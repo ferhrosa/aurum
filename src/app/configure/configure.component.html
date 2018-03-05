@@ -1,0 +1,31 @@
+<h1>Configuration</h1>
+
+<form (ngSubmit)="form_submit()" #formConfigure="ngForm">
+
+  <p>
+    <input name="apiKey" [(ngModel)]="configuration.apiKey" placeholder="apiKey" required>
+  </p>
+
+  <p>
+    <input name="authDomain" [(ngModel)]="configuration.authDomain" placeholder="authDomain" required>
+  </p>
+
+  <p>
+    <input name="databaseURL" [(ngModel)]="configuration.databaseURL" placeholder="databaseURL" required>
+  </p>
+
+  <p>
+    <input name="projectId" [(ngModel)]="configuration.projectId" placeholder="projectId" required>
+  </p>
+
+  <p>
+    <input name="storageBucket" [(ngModel)]="configuration.storageBucket" placeholder="storageBucket" required>
+  </p>
+
+  <p>
+    <input name="messagingSenderId" [(ngModel)]="configuration.messagingSenderId" placeholder="messagingSenderId" required>
+  </p>
+
+  <button type="submit" [disabled]="!formConfigure.form.valid">Save</button>
+
+</form>
