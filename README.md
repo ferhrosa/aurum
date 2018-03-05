@@ -1,0 +1,2 @@
+# aurum
+Personal finances manager
