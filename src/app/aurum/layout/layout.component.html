@@ -1,6 +1,55 @@
-<h1>Aurum</h1>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true" class="mat-elevation-z6">
 
-<router-outlet></router-outlet>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/">
+                <h1 matLine>Aurum</h1>
+            </a>
+            
+            <mat-divider></mat-divider>
 
-<hr>
-footer
+            <h3 matSubheader class="md-no-sticky">Movimentações</h3>
+
+            <a mat-list-item routerLink="/resumo">
+                <mat-icon matListIcon class="icone-resumo">dashboard</mat-icon>
+                <p matLine>Resumo</p>
+            </a>
+
+            <a mat-list-item routerLink="/despesas">
+                <mat-icon matListIcon class="icone-despesa">money_off</mat-icon>
+                <p matLine>Despesas</p>
+            </a>
+
+            <a mat-list-item routerLink="/receitas">
+                <mat-icon matListIcon class="icone-receita">attach_money</mat-icon>
+                <p matLine>Receitas</p>
+            </a>
+
+            <mat-divider></mat-divider>
+
+            <h3 matSubheader class="md-no-sticky">Cadastros</h3>
+
+            <a mat-list-item routerLink="/cadastros/categorias">
+                <mat-icon matListIcon>view_list</mat-icon>
+                <p matLine>Categorias</p>
+            </a>
+
+            <a mat-list-item routerLink="/cadastros/contas">
+                <mat-icon matListIcon>account_balance_wallet</mat-icon>
+                <p matLine>Contas</p>
+            </a>
+
+            <a mat-list-item routerLink="/cadastros/cartoes">
+                <mat-icon matListIcon>credit_card</mat-icon>
+                <p matLine>Cartões</p>
+            </a>
+
+        </mat-nav-list>
+        
+    </mat-sidenav>
+
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

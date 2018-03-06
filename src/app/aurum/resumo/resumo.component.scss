@@ -1,0 +1,69 @@
+//@import 'css/tema-padrao';
+@import '../../shared/tema';
+
+mat-card {
+    margin-bottom: 20px;
+}
+
+.extrato {
+    padding-right: 0;
+
+    table {
+        width: 100%;
+        font-size: 0.9rem;
+        border-collapse: separate;
+
+        td {
+            margin: 0;
+            padding: 2px 5px;
+            text-align: left;
+            border-bottom: dotted 1px #ddd;
+            vertical-align: middle;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &.cabecalho {
+                font-weight: bold;
+            }
+
+            &.data {
+                font-size: 1.1em;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            &.valor {
+                width: 1px;
+                white-space: nowrap;
+                padding-right: 0;
+                text-align: right;
+
+                &.positivo {
+                    color: $tema-cor-receita;
+                }
+
+                &.negativo {
+                    color: $tema-cor-despesa;
+                }
+            }
+
+            &.titulo-saldo {
+                text-align: right;
+                font-style: italic;
+                color: #999;
+            }
+
+            &.botao-adicionar {
+                width: 1px;
+                vertical-align: top;
+				border-bottom: none;
+            }
+        }
+    }
+}

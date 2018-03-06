@@ -1,0 +1,90 @@
+
+<!--<h2>Resumo</h2>-->
+
+<!--<div fxLayout="row">
+    <mat-card fxFlex="50">
+        <mat-card-content>
+            <div>conta 1</div>
+            <div>conta 2</div>
+            <div>conta 3</div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="40" fxFlexOffset="10">
+        <mat-card-content>
+            <div>filtro de</div>
+            <div>filtro para</div>
+        </mat-card-content>
+    </mat-card>
+</div>-->
+
+<!--<mat-card>-->
+  <mat-card class="extrato">
+    <!--<mat-card-content class="extrato">-->
+        <table>
+            <tbody>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">01/05/2017</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 420,00</td>
+                    <td rowspan="4" class="botao-adicionar">
+                        <button mat-icon-button aria-label="Adicionar" (click)="adicionar(123)">
+                            <mat-icon>add_box</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Combustível</td>
+                    <td class="valor negativo">R$ -70,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Pão</td>
+                    <td class="valor negativo">R$ -4,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Mercado</td>
+                    <td class="valor negativo">R$ -50,00</td>
+                </tr>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">02/05/2017</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 316,00</td>
+                    <td rowspan="3" class="botao-adicionar">
+                        <button mat-icon-button aria-label="Adicionar" (click)="adicionar()">
+                            <mat-icon>add_box</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boleto de alguma coisa</td>
+                    <td class="valor negativo">R$ -200,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Recebemos alguma coisa de alguém</td>
+                    <td class="valor positivo">R$ 120,00</td>
+                </tr>
+                <tr class="final-dia">
+                    <td colspan="2" class="titulo-saldo">Saldo final</td>
+                    <td class="cabecalho valor positivo">R$ 236,00</td>
+                </tr>
+            </tbody>
+        </table>
+    <!--</mat-card-content>-->
+</mat-card>
+
+
+<mat-card>
+
+    <mat-list>
+        <mat-list-item *ngFor="let item of lista">
+            {{item.Id}} - {{item.Descricao}}
+        </mat-list-item>
+    </mat-list>
+
+</mat-card>
+
+
+<span class="fab-container">
+    <button mat-fab (click)="adicionar()">
+        <mat-icon>add</mat-icon>
+    </button>
+</span>
