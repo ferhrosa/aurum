@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="descricao">Adicione os valores abaixo conforme solicitado:</string>
+    <string name="app_name">AurumAndroid</string>
+    <string name="data">Selecione a Data</string>
+    <string name="tipo">Tipo:</string>
+    <string name="debito">Débito</string>
+    <string name="credito">Crédito</string>
+    <string name="valor">Valor:</string>
+    <string name="categoria">Categoria:</string>
+    <string name="novaCategoria">+</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="BancoDados_onCreate">              CREATE TABLE Categorias (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT);</string>
+    <string name="BancoDados_onUpgrade">        DROP TABLE IF EXISTS Categorias</string>
+
+</resources>

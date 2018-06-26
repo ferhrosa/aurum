@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Aurum.UserControls.Categoria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="341" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal" FlowDirection="LeftToRight">
+                <Button Name="btnAdicionar" Content="Adicionar" Margin="0,0,15,0" Click="btnAdicionar_Click" />
+                <Button Name="btnAlterar" Content="Alterar" Margin="0,0,15,0" Click="btnAlterar_Click" />
+                <Button Name="btnExcluir" Content="Excluir" Margin="0,0,15,0" Click="btnExcluir_Click" />
+                <Button Name="btnSalvar" Content="Salvar" Margin="0,0,5,0" Click="btnSalvar_Click" />
+                <Button Name="btnCancelar" Content="Cancelar" Click="btnCancelar_Click" />
+            </StackPanel>
+            <Grid Name="gridCampos" Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Código:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+                <TextBox Name="tbCodCategoria" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" />
+                <CheckBox Name="cbAtivo" Content="Ativo" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" IsChecked="True" Margin="80,0,0,0" VerticalAlignment="Center" />
+                <Label Content="Descrição:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+                <TextBox Name="tbDescricao" MaxLength="50" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" Height="23" VerticalAlignment="Center" Width="250" />
+            </Grid>
+        </Grid>
+        <DataGrid Name="dgCategoria" AutoGenerateColumns="False" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Height="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" AlternatingRowBackground="#f8f8f8" IsReadOnly="True" VerticalGridLinesBrush="Silver" HorizontalGridLinesBrush="Gray" HorizontalAlignment="Center" SelectionChanged="dgCategoria_SelectionChanged" HeadersVisibility="Column" MouseDoubleClick="dgCategoria_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="codCategoriaColumn" Binding="{Binding Path=CodCategoria}" Header="Código" Width="Auto" />
+                <DataGridCheckBoxColumn x:Name="ativoColumn" Binding="{Binding Path=Ativo}" Header="Ativo" Width="Auto" />
+                <DataGridTextColumn x:Name="descricaoColumn" Binding="{Binding Path=Descricao}" Header="Descrição" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

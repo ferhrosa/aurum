@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Taxa]
+    ADD CONSTRAINT [FK_Taxa_Conta] FOREIGN KEY ([CodConta]) REFERENCES [dbo].[Conta] ([CodConta]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
