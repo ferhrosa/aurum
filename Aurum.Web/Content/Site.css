@@ -1,0 +1,208 @@
+﻿/* Customizações do Bootstrap */
+
+.navbar-inverse {
+    background-color: #004C4C;
+    border-color: #537F74;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #D4D9D9;
+    }
+
+.table-selecionavel > tbody > tr,
+.table-selecionavel > thead > tr > th.selecionar {
+    cursor: pointer;
+}
+
+.table > thead > tr.active,
+.table > tbody > tr.active,
+.table > tfoot > tr.active {
+    color: #FFF;
+}
+
+    .table > thead > tr > td.active,
+    .table > tbody > tr > td.active,
+    .table > tfoot > tr > td.active,
+    .table > thead > tr > th.active,
+    .table > tbody > tr > th.active,
+    .table > tfoot > tr > th.active,
+    .table > thead > tr.active > td,
+    .table > tbody > tr.active > td,
+    .table > tfoot > tr.active > td,
+    .table > thead > tr.active > th,
+    .table > tbody > tr.active > th,
+    .table > tfoot > tr.active > th,
+    .table-striped > thead > tr:nth-child(odd) > td.active,
+    .table-striped > tbody > tr:nth-child(odd) > td.active,
+    .table-striped > tfoot > tr:nth-child(odd) > td.active,
+    .table-striped > thead > tr:nth-child(odd) > th.active,
+    .table-striped > tbody > tr:nth-child(odd) > th.active,
+    .table-striped > tfoot > tr:nth-child(odd) > th.active,
+    .table-striped > thead > tr.active:nth-child(odd) > td,
+    .table-striped > tbody > tr.active:nth-child(odd) > td,
+    .table-striped > tfoot > tr.active:nth-child(odd) > td,
+    .table-striped > thead > tr.active:nth-child(odd) > th,
+    .table-striped > tbody > tr.active:nth-child(odd) > th,
+    .table-striped > tfoot > tr.active:nth-child(odd) > th {
+        background-color: #537F74;
+        color: #FFF;
+    }
+
+.table-selecionavel > tbody > tr > td.active:hover,
+.table-selecionavel > tbody > tr > th.active:hover,
+.table-selecionavel > tbody > tr.active:hover > td,
+.table-selecionavel > tbody > tr.active:hover > th,
+.table-selecionavel > tbody > tr:nth-child(odd) > td.active:hover,
+.table-selecionavel > tbody > tr:nth-child(odd) > th.active:hover,
+.table-selecionavel > tbody > tr.active:nth-child(odd):hover > td,
+.table-selecionavel > tbody > tr.active:nth-child(odd):hover > th {
+    background-color: #537F74;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th,
+.table-striped.table-selecionavel > tbody > tr:nth-child(odd):hover > td,
+.table-striped.table-selecionavel > tbody > tr:nth-child(odd):hover > th {
+    background-color: #537F74;
+    color: #FFF;
+}
+
+/* Customizações do Bootstrap */
+
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color: #005C5C;
+}
+
+.datepicker {
+    z-index: 1151 !important;
+}
+
+.meses {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+    .meses > label {
+        display: inline-block;
+        width: 50px;
+        margin-left: -50px;
+    }
+
+    .meses > div > a {
+        width: 110px;
+    }
+
+.input-validation-error {
+    border-color: #e74c3c;
+    background-color: mistyrose;
+}
+
+
+.table > thead > tr > th.selecionar,
+.table > tbody > tr > td.selecionar {
+    text-align: center;
+    border-right: dotted 1px #ccc;
+}
+
+    .table > thead > tr > th.selecionar:hover {
+        background-color: #537F74;
+        color: #FFF;
+    }
+
+    .table > tbody > tr > td.selecionar > .glyphicon-unchecked,
+    .table > tbody > tr > td.selecionar > .glyphicon-check {
+        display: none;
+    }
+
+    .table > tbody > tr > td.selecionar:hover > .glyphicon-unchecked,
+    .table > tbody > tr:hover > td.selecionar > .glyphicon-unchecked {
+        display: inline;
+    }
+
+    .table > tbody > tr > td.selecionar.active > .glyphicon-unchecked,
+    .table > tbody > tr.active > td.selecionar > .glyphicon-unchecked {
+        display: none;
+    }
+
+    .table > tbody > tr > td.selecionar.active > .glyphicon-check,
+    .table > tbody > tr.active > td.selecionar > .glyphicon-check {
+        display: inline;
+    }
+
+
+.valor-negativo {
+    color: #900;
+}
+
+.valor-positivo {
+    color: #090;
+}
+
+.table-selecionavel > tbody > tr:hover > td.valor-negativo,
+.table-selecionavel > tbody > tr > td.valor-negativo:hover,
+.table-selecionavel.table-striped > tbody > tr:nth-child(odd):hover > td.valor-negativo,
+.table-selecionavel.table-striped > tbody > tr:nth-child(odd) > td.valor-negativo:hover,
+.table-selecionavel > tbody > tr.active > td.valor-negativo {
+    color: #fcc;
+}
+
+.table-selecionavel > tbody > tr:hover > td.valor-positivo,
+.table-selecionavel > tbody > tr > td.valor-positivo:hover,
+.table-selecionavel.table-striped > tbody > tr:nth-child(odd):hover > td.valor-positivo,
+.table-selecionavel.table-striped > tbody > tr:nth-child(odd) > td.valor-positivo:hover,
+.table-selecionavel > tbody > tr.active > td.valor-positivo {
+    color: #cfc;
+}
+
+
+/********************************************************
+    Movimentações / Resumo
+ ********************************************************/
+
+.resumo {
+    position: relative;
+}
+
+    .resumo > div {
+        overflow-x: scroll;
+        overflow-y: visible;
+        margin-left: 250px;
+    }
+
+        .resumo > div > table {
+            table-layout: fixed;
+        }
+
+            .resumo > div > table thead th:nth-of-type(n+2), .resumo > div > table td {
+                text-align: center;
+            }
+
+            .resumo > div > table td, .resumo > div > table th {
+                width: 100px;
+                border-right: 1px solid #ddd;
+            }
+
+            .resumo > div > table thead th:first-of-type, .resumo > div > table tbody th {
+                position: absolute;
+                left: 0;
+                width: 250px;
+                border-right: 2px solid #ddd;
+            }
+
+            .resumo > div > table thead th .dias {
+                float: right;
+                padding-left: 10px;
+                border-left: 2px solid #ddd;
+                font-weight: lighter;
+            }
+
+            .resumo > div > table thead tr.totais, .resumo > div > table thead tr.totais th {
+                background-color: #eee;
+            }
+            .resumo > div > table thead tr.totais th.info {
+                background-color: #d9edf7;
+            }

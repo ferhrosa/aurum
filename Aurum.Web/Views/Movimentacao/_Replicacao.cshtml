@@ -1,0 +1,63 @@
+﻿@*@model Aurum.Modelo.Movimentacao*@
+
+<div id="modal-replicacao-movimentacao" class="modal" data-keyboard="false" data-backdrop="static" data-bind="with: replicacao">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click: cancelar" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Replicar movimentação</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert alert-danger" data-bind="visible: erros().length">
+                    <ul data-bind="foreach: erros">
+                        <li data-bind="text: $data"></li>
+                    </ul>
+                </div>
+
+                <form id="replicacao-movimentacao-form" class="form-horizontal row">
+                    <div class="validation-summary-valid alert alert-danger" data-valmsg-summary="true" data-bind="visible: invalido">
+                        <ul><li style="display:none"></li></ul>
+                    </div>
+
+                    <p class="col-sm-12">Todos os itens selecionados serão replicados para os próximos meses.</p>
+
+                    <p class="col-sm-10">Quantidade de meses para ter os itens replicados:</p>
+                    <div class="col-sm-2">
+                        @*<input data-bind="value: quantidadeMeses" data-val="true" data-val-required="É necessário informar a quantidade de meses" data-val-number="A quantidade de meses deve ser numérica" />*@
+                        <input data-bind="value: quantidadeMeses"
+                            data-val="true"
+                            data-val-required="É necessário informar a quantidade de meses."
+                            data-val-regex="A quantidade de meses deve ser um número inteiro e maior que 0."
+                            data-val-regex-pattern="[0-9]*[1-9]+[0-9]*"
+                            maxlength="2"
+                            class="form-control input-sm" />
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="pull-right form-group">
+                            <button id="btnReplicar" data-bind="click: replicar" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-floppy-disk"></i>
+                                Replicar
+                            </button>
+
+                            <button id="btnCancelar" data-bind="click: cancelar" class="btn btn-default">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/app/Movimentacao/Movimentacao.Api.js"></script>
+<script src="~/Scripts/app/Movimentacao/Movimentacao.Replicacao.ViewModel.js"></script>

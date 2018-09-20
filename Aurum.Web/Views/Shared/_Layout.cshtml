@@ -1,0 +1,89 @@
+﻿@using Aurum.Web.Extensoes
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Aurum 2.0</title>
+
+    <script>
+        var urlRaiz = '@Href("~/")';
+        var urlPagina = '@Request.RawUrl';
+    </script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Aurum 2.0", "Principal", "Inicio", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.MenuLink("Movimentação", "Principal", "Movimentacao", childElements: new MvcHtmlString[] {
+                        @Html.MenuLink("Resumo", "Resumo", "Movimentacao"),
+                        @Html.MenuLink("Cadastro", "Cadastro", "Movimentacao")
+                    })
+                    @Html.MenuLink("Cadastros", "Principal", "Cadastros", childElements: new MvcHtmlString[] { 
+                        @Html.MenuLink("Carteiras", "Carteiras", "Cadastros"),
+                        @Html.MenuLink("Categorias", "Categorias", "Cadastros"),
+                        @Html.MenuLink("Objetivos", "Objetivos", "Cadastros")
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="pull-right">
+                        <p>&copy; @DateTime.Now.Year - Aurum 2.0</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @if (Html.IsDebug())
+    {
+        <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+        <script src="~/Scripts/sammy-0.7.4.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/moment-with-langs.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.pt-BR.js"></script>
+        <script src="~/Scripts/typeahead.bundle.js"></script>
+    }
+    else
+    {
+        <script src="~/Scripts/knockout-3.1.0.js"></script>
+        <script src="~/Scripts/sammy-0.7.4.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/moment-with-langs.min.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.pt-BR.js"></script>
+        <script src="~/Scripts/typeahead.bundle.min.js"></script>
+    }
+    
+    
+    <script src="~/Scripts/app/Comum.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

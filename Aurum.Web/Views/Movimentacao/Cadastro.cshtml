@@ -1,0 +1,104 @@
+﻿@using Aurum.Negocio.Extensoes
+@using Aurum.Web.Extensoes
+
+@model Aurum.Modelo.Movimentacao
+
+@{
+    ViewBag.Title = "Movimentações - Cadastro";
+}
+
+<div class="page-header">
+    <a class="pull-right" href="~/Movimentacao/Resumo/@ViewBag.MesAno">Ir para o resumo</a>
+    <h3>Cadastro de Movimentações</h3>
+</div>
+
+@Html.Meses("MovimentacaoCadastroMesAno", (DateTime)ViewBag.MesAnoData)
+
+<input type="hidden" id="mesAno" value="@ViewBag.MesAno" />
+<input type="hidden" id="mesAnoData" value="@(((DateTime)ViewBag.MesAnoData).ToString("yyyy-MM-dd"))" />
+
+<div class="form-group">
+    <button id="btnInserir" data-bind="click: inserir" class="btn btn-success">
+        <i class="glyphicon glyphicon-plus"></i>
+        Inserir
+    </button>
+
+    <button id="btnAlterar" data-bind="click: alterar, enable: quantidadeSelecionados() == 1" class="btn btn-warning">
+        <i class="glyphicon glyphicon-pencil"></i>
+        Alterar
+    </button>
+
+    <button id="btnExcluir" data-bind="click: excluir, enable: quantidadeSelecionados" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        Excluir
+    </button>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button id="btnConsolidar" data-bind="click: consolidar, enable: quantidadeSelecionados" class="btn btn-info">
+        <i class="glyphicon glyphicon-ok"></i>
+        Consolidar
+    </button>
+
+    <button id="btnReplicar" data-bind="click: replicar,enable: quantidadeSelecionados" class="btn btn-primary">
+        <i class="glyphicon glyphicon-repeat"></i>
+        Replicar
+    </button>
+</div>
+
+<div class="alert alert-danger" data-bind="visible: erros().length">
+    <ul data-bind="foreach: erros">
+        <li data-bind="text: $data"></li>
+    </ul>
+</div>
+
+<div id="registros">
+    <table data-bind="visible: lista().length" class="table table-condensed table-striped table-hover table-selecionavel">
+        <thead>
+            <tr>
+                <th class="selecionar" data-bind="click: selecionarTodos, css: { active: todosSelecionados }">
+                    <span class="glyphicon glyphicon-check"></span>
+                </th>
+                <th>Código</th>
+                <th>Data</th>
+                <th class="text-center">Consolidado</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Descrição</th>
+                <th>Carteira</th>
+                <th>Parcela</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: lista">
+            <tr data-bind="css: { active: Selecionado }">
+                <td class="selecionar" data-bind="click: $root.selecionarCheck">
+                    <span class="glyphicon glyphicon-unchecked"></span>
+                    <span class="glyphicon glyphicon-check"></span>
+                </td>
+                <td data-bind="click: $root.selecionar, text: Codigo"></td>
+                <td data-bind="click: $root.selecionar, text: moment(Data).format('L')"></td>
+                <td data-bind="click: $root.selecionar" class="text-center"><span class="glyphicon glyphicon-check" data-bind="visible: Consolidado"></span></td>
+                <td data-bind="click: $root.selecionar, text: Categoria.Descricao"></td>
+                <td data-bind="click: $root.selecionar, text: formatarMoeda(Valor / 100), css: { 'valor-negativo': (Valor < 0), 'valor-positivo': (Valor > 0) }"></td>
+                <td data-bind="click: $root.selecionar, text: Descricao.Descricao"></td>
+                <td data-bind="click: $root.selecionar, text: Carteira.Descricao"></td>
+                <td data-bind="click: $root.selecionar, text: (NumeroParcela && TotalParcelas ? ZeroEsquerda(NumeroParcela, 2) + ' de ' + ZeroEsquerda(TotalParcelas, 2) : '-')"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div data-bind="visible: listou() && lista().length == 0" class="alert">Não há movimentações no mês selecionado.</div>
+
+    <div data-bind="visible: listando" class="alert alert-info">Carregando lista de movimentações do mês. Aguarde...</div>
+</div>
+
+
+@Html.Partial("_FormularioCadastro")
+@Html.Partial("_Replicacao")
+
+
+@section Scripts
+{
+    <script src="~/Scripts/app/Movimentacao/Movimentacao.Api.js"></script>
+    <script src="~/Scripts/app/Movimentacao/Movimentacao.Cadastro.ViewModel.js"></script>
+}

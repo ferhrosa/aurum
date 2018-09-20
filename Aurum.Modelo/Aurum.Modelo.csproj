@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4299626-D30D-4B85-ACC7-25A068472EE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aurum.Modelo</RootNamespace>
+    <AssemblyName>Aurum.Modelo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Carteira.cs" />
+    <Compile Include="Categoria.cs" />
+    <Compile Include="Contexto.cs" />
+    <Compile Include="Enums\TipoCarteira.cs" />
+    <Compile Include="Migrations\201405200021262_Inicial.cs" />
+    <Compile Include="Migrations\201405200021262_Inicial.Designer.cs">
+      <DependentUpon>201405200021262_Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405201304362_Carteiras.cs" />
+    <Compile Include="Migrations\201405201304362_Carteiras.Designer.cs">
+      <DependentUpon>201405201304362_Carteiras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405211157416_CarteiraVinculada.cs" />
+    <Compile Include="Migrations\201405211157416_CarteiraVinculada.Designer.cs">
+      <DependentUpon>201405211157416_CarteiraVinculada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405211332319_Objetivo.cs" />
+    <Compile Include="Migrations\201405211332319_Objetivo.Designer.cs">
+      <DependentUpon>201405211332319_Objetivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405211755552_DataObjetivo.cs" />
+    <Compile Include="Migrations\201405211755552_DataObjetivo.Designer.cs">
+      <DependentUpon>201405211755552_DataObjetivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405212316082_MovimentacaoDescricaoCodigo.cs" />
+    <Compile Include="Migrations\201405212316082_MovimentacaoDescricaoCodigo.Designer.cs">
+      <DependentUpon>201405212316082_MovimentacaoDescricaoCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405222336505_MovimentacaoCamposObrigatorios.cs" />
+    <Compile Include="Migrations\201405222336505_MovimentacaoCamposObrigatorios.Designer.cs">
+      <DependentUpon>201405222336505_MovimentacaoCamposObrigatorios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405231428475_AjustesTamanhos.cs" />
+    <Compile Include="Migrations\201405231428475_AjustesTamanhos.Designer.cs">
+      <DependentUpon>201405231428475_AjustesTamanhos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405231447506_ObjetivoCarteiraObrigatoria.cs" />
+    <Compile Include="Migrations\201405231447506_ObjetivoCarteiraObrigatoria.Designer.cs">
+      <DependentUpon>201405231447506_ObjetivoCarteiraObrigatoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Movimentacao.cs" />
+    <Compile Include="MovimentacaoDescricao.cs" />
+    <Compile Include="Objetivo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405200021262_Inicial.resx">
+      <DependentUpon>201405200021262_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405201304362_Carteiras.resx">
+      <DependentUpon>201405201304362_Carteiras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405211157416_CarteiraVinculada.resx">
+      <DependentUpon>201405211157416_CarteiraVinculada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405211332319_Objetivo.resx">
+      <DependentUpon>201405211332319_Objetivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405211755552_DataObjetivo.resx">
+      <DependentUpon>201405211755552_DataObjetivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405212316082_MovimentacaoDescricaoCodigo.resx">
+      <DependentUpon>201405212316082_MovimentacaoDescricaoCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405222336505_MovimentacaoCamposObrigatorios.resx">
+      <DependentUpon>201405222336505_MovimentacaoCamposObrigatorios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405231428475_AjustesTamanhos.resx">
+      <DependentUpon>201405231428475_AjustesTamanhos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405231447506_ObjetivoCarteiraObrigatoria.resx">
+      <DependentUpon>201405231447506_ObjetivoCarteiraObrigatoria.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

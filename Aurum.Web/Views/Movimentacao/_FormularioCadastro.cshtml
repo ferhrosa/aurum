@@ -1,0 +1,145 @@
+﻿@model Aurum.Modelo.Movimentacao
+
+<div id="modal-cadastro-movimentacao" class="modal" data-keyboard="false" data-backdrop="static" data-bind="with: formulario">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click: cancelar" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Movimentação</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert alert-danger" data-bind="visible: erros().length">
+                    <ul data-bind="foreach: erros">
+                        <li data-bind="text: $data"></li>
+                    </ul>
+                </div>
+
+                <form id="cadastro" data-bind="with: registro">
+                    <div class="validation-summary-valid alert alert-danger" data-valmsg-summary="true" data-bind="visible: $parent.invalido">
+                        <ul><li style="display:none"></li></ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Codigo):
+                            @Html.TextBoxFor(model => model.Codigo, new { data_bind = "value: Codigo", @class = "form-control input-sm", disabled = "disabled" })
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-6">
+                            Consolidado:
+                            <div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="rbConsolidado" value="true" data-bind="checkedBoolean: Consolidado" />
+                                    Sim
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="rbConsolidado" value="false" data-bind="checkedBoolean: Consolidado" />
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.Data):
+                            @Html.TextBoxFor(model => model.Data, new { data_bind = "value: Data.Formatada, hasFocus: $parent.entrandoFormulario", @class = "form-control input-sm datepicker", data_provide = "datepicker" })
+                        </div>
+                        <div class="col-sm-5">
+                            Tipo:
+                            <div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="rbTipo" value="C" data-bind="checked: Tipo" data-val="true" data-val-required="O campo Tipo é obrigatório." />
+                                    Crédito
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="rbTipo" value="D" data-bind="checked: Tipo" data-val="true" data-val-required="O campo Tipo é obrigatório." />
+                                    Débito
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Valor):
+                            @*@Html.TextBoxFor(model => model.Valor, new { data_bind = "value: Valor.Formatado", @class = "form-control input-sm" })*@
+                            <input type="text" data-bind="value: Valor.Formatado" data-val="true" data-val-required="O campo Valor é obrigatório." class="form-control input-sm" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Categoria_Codigo):
+                            @Html.DropDownListFor(model => model.Categoria_Codigo, new SelectList(ViewBag.ListaCategorias, "Codigo", "Descricao"), String.Empty, new { data_bind = "value: Categoria_Codigo", @class = "form-control input-sm" })
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayNameFor(model => model.Descricao_Codigo):
+                            @Html.TextBoxFor(model => model.Descricao.Descricao, new { data_bind = "value: Descricao.Descricao, valueUpdate: 'blur'", maxlength = 100, @class = "form-control input-sm" })
+                            @*@Html.HiddenFor(model => model.Descricao_Codigo, new { data_bind = "value: Descricao_Codigo" })*@
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @Html.DisplayNameFor(model => model.Carteira_Codigo):
+                            @Html.DropDownListFor(model => model.Carteira_Codigo, new SelectList(ViewBag.ListaCarteiras, "Codigo", "Descricao"), String.Empty, new { data_bind = "value: Carteira_Codigo, event: { change: $parent.verificarCarteiraTipo }", @class = "form-control input-sm" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.DisplayNameFor(model => model.Objetivo_Codigo):
+                            @Html.DropDownListFor(model => model.Objetivo_Codigo, new SelectList(ViewBag.ListaObjetivos, "Codigo", "Descricao"), String.Empty, new { data_bind = "value: Objetivo_Codigo", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.DisplayNameFor(model => model.NumeroParcela):
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    @Html.TextBoxFor(model => model.NumeroParcela, new { data_bind = "value: NumeroParcela, enable: $parent.inserindo() && PermiteParcelamento()", maxlength = 3, @class = "form-control form-inline input-sm" })
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    de:
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.TextBoxFor(model => model.TotalParcelas, new { data_bind = "value: TotalParcelas, enable: $parent.inserindo() && PermiteParcelamento()", maxlength = 3, @class = "form-control form-inline input-sm" })
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.TotalParcelas):
+                        </div>*@
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.DisplayNameFor(model => model.Observacao):
+                            @Html.TextAreaFor(model => model.Observacao, new { data_bind = "value: Observacao", rows = 3, @class = "form-control input-sm" })
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="pull-right form-group">
+                            <button id="btnSalvar" data-bind="click: salvar" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-floppy-disk"></i>
+                                Salvar
+                            </button>
+
+                            <button id="btnCancelar" data-bind="click: cancelar" class="btn btn-default">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/app/Cadastros/Carteira.Api.js"></script>
+<script src="~/Scripts/app/Movimentacao/Movimentacao.Api.js"></script>
+<script src="~/Scripts/app/Movimentacao/Movimentacao.FormularioCadastro.ViewModel.js"></script>

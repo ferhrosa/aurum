@@ -1,0 +1,154 @@
+﻿@model Aurum.Modelo.Carteira
+
+@{
+    ViewBag.Title = "Cadastro de Carteiras";
+}
+
+<script>
+@{
+    var tipos = String.Empty;
+    var listaTipos = (ViewBag.ListaTipos as IEnumerable<SelectListItem>).ToList();
+
+    for (var i = 0; i < listaTipos.Count; i++)
+    {
+        var tipo = listaTipos[i];
+
+        if (i > 0) { tipos += ","; }
+
+        tipos += String.Format("\"{0}\":\"{1}\"", tipo.Value, tipo.Text);
+    }
+}
+    var tipos = {@Html.Raw(tipos) };
+</script>
+
+<div class="page-header">
+    <h3>Cadastro de Carteiras</h3>
+</div>
+
+<div class="form-group">
+    <button id="btnInserir" data-bind="click: inserir" class="btn btn-success">
+        <i class="glyphicon glyphicon-plus"></i>
+        Inserir
+    </button>
+
+    <button id="btnAlterar" data-bind="click: alterar, enable: selecionado" class="btn btn-warning">
+        <i class="glyphicon glyphicon-pencil"></i>
+        Alterar
+    </button>
+
+    <button id="btnExcluir" data-bind="click: excluir, enable: selecionado" class="btn btn-danger">
+        <i class="glyphicon glyphicon-trash"></i>
+        Excluir
+    </button>
+</div>
+
+<div class="alert alert-danger" data-bind="visible: erros().length && !inserindo() && !alterando()">
+    <ul data-bind="foreach: erros">
+        <li data-bind="text: $data"></li>
+    </ul>
+</div>
+
+<div id="registros">
+    <table data-bind="visible: lista().length" class="table table-condensed table-striped table-hover table-selecionavel">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Dia Vencimento Fatura</th>
+                <th>Carteira Vinculada</th>
+                <th>Ativo</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: lista">
+            <tr data-bind="click: $root.selecionar, css: { active: $root.selecionado() && $data.Codigo == $root.selecionado().Codigo, warning: !Ativo }">
+                <td data-bind="text: Codigo"></td>
+                <td data-bind="text: tipos[Tipo]"></td>
+                <td data-bind="text: Descricao"></td>
+                <td data-bind="text: DiaVencimentoFatura"></td>
+                <td data-bind="text: (CarteiraMae ? CarteiraMae.Descricao : '')"></td>
+                <td data-bind="text: (Ativo ? 'Sim' : 'Não')"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div data-bind="visible: listou() && lista().length == 0" class="alert">Não há carteiras cadastradas.</div>
+
+    <div data-bind="visible: listando" class="alert alert-info">Carregando lista de carteiras. Aguarde...</div>
+</div>
+
+<div id="modal-cadastro" class="modal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click: cancelar" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Carteira</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert alert-danger" data-bind="visible: erros().length">
+                    <ul data-bind="foreach: erros">
+                        <li data-bind="text: $data"></li>
+                    </ul>
+                </div>
+
+                <form id="cadastro" data-bind="with: registro">
+                    <div class="validation-summary-valid alert alert-danger" data-valmsg-summary="true" data-bind="visible: $root.invalido">
+                        <ul><li style="display:none"></li></ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Codigo):
+                            @Html.TextBoxFor(model => model.Codigo, new { data_bind = "value: Codigo", @class = "form-control input-sm", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Tipo):
+                            @Html.DropDownListFor(model => model.Tipo, new SelectList(ViewBag.ListaTipos, "Value", "Text"), String.Empty, new { data_bind = "value: Tipo, hasFocus: $root.entrandoFormulario", @class = "form-control input-sm" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.DiaVencimentoFatura):
+                            @Html.TextBoxFor(model => model.DiaVencimentoFatura, new { data_bind = "value: DiaVencimentoFatura, enable: (Tipo() == 4)", maxlength = 2, @class = "form-control input-sm" })
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.DisplayNameFor(model => model.CarteiraMae_Codigo):
+                            @Html.DropDownListFor(model => model.CarteiraMae, new SelectList(ViewBag.ListaCarteiras, "Codigo", "Descricao"), String.Empty, new { data_bind = "value: CarteiraMae_Codigo, enable: (Tipo() == 4)", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.DisplayNameFor(model => model.Descricao):
+                            @Html.TextBoxFor(model => model.Descricao, new { data_bind = "value: Descricao", maxlength = 100, @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="pull-right form-group">
+                            <button id="btnSalvar" data-bind="click: salvar" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-floppy-disk"></i>
+                                Salvar
+                            </button>
+
+                            <button id="btnCancelar" data-bind="click: cancelar" class="btn btn-default">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/app/Cadastros/Carteira.Api.js"></script>
+    <script src="~/Scripts/app/Cadastros/Carteira.ViewModel.js"></script>
+}

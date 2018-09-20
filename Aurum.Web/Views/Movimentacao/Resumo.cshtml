@@ -1,0 +1,95 @@
+﻿@using Aurum.Web.Extensoes
+
+@{
+    ViewBag.Title = "Resumo";
+}
+
+<div class="page-header">
+    <a class="pull-right" href="~/Movimentacao/Cadastro/@ViewBag.MesAno">Ir para o cadastro</a>
+    <h3>Resumo das Movimentações</h3>
+</div>
+
+@Html.Meses("MovimentacaoResumoMesAno", (DateTime)ViewBag.MesAnoData)
+
+<input type="hidden" id="mesAno" value="@ViewBag.MesAno" />
+<input type="hidden" id="mesAnoData" value="@(((DateTime)ViewBag.MesAnoData).ToString("yyyy-MM-dd"))" />
+
+
+<div class="panel panel-primary" style="display: inline-block">
+    <div class="panel-heading">
+        Agrupar por
+    </div>
+    <div class="panel-body">
+        <label class="radio-inline">
+            <input type="radio" name="rbAgrupamento" value="categoria" data-bind="checked: agrupamento" />
+            Categoria
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="rbAgrupamento" value="descricao" data-bind="checked: agrupamento" />
+            Descrição
+        </label>
+    </div>
+</div>
+
+
+<div class="resumo" data-bind="visible: lista()">
+    <div>
+        <table id="tableResumo" class="table table-striped" data-bind="with: lista">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="dias">Dias:</span>
+                        <span data-bind="text: $root.agrupamentoNome"></span>
+                    </th>
+
+                    <!-- ko foreach: $root.dias -->
+                    <th data-bind="text: $data, css: { info: $data == $root.diaAtual() }"></th>
+                    <!-- /ko -->
+                </tr>
+                <tr class="totais">
+                    <th>
+                        <span class="pull-right">&Sigma;</span>
+                        Totais
+                    </th>
+
+                    <!-- ko foreach: Totais -->
+                    <th data-bind="text: formatarMoeda(Valor / 100), css: { info: Dia == $root.diaAtual(), 'valor-negativo': (Valor < 0), 'valor-positivo': (Valor > 0) }"></th>
+                    <!-- /ko -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: Normais -->
+                    <tr>
+                        <th data-bind="text: Descricao"></th>
+
+                        <!-- ko foreach: Dias -->
+                        <td data-bind="text: formatarMoeda(Valor / 100), css: { info: Dia == $root.diaAtual(), 'valor-negativo': (Valor < 0), 'valor-positivo': (Valor > 0) }"></td>
+                        <!-- /ko -->
+                    </tr>
+                <!-- /ko -->
+                <!-- ko foreach: CartoesCredito -->
+                    <tr>
+                        <th>
+                            <i class="fa fa-credit-card pull-right"></i>
+                            <span data-bind="text: Descricao"></span>
+                        </th>
+
+                        <!-- ko foreach: Dias -->
+                        <td data-bind="text: formatarMoeda(Valor / 100), css: { info: Dia == $root.diaAtual(), 'valor-negativo': (Valor < 0), 'valor-positivo': (Valor > 0) }"></td>
+                        <!-- /ko -->
+                    </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_FormularioCadastro")
+
+
+@section Scripts
+{
+    <script src="~/Scripts/app/Movimentacao/Movimentacao.Api.js"></script>
+    <script src="~/Scripts/app/Movimentacao/Movimentacao.Resumo.ViewModel.js"></script>
+}
