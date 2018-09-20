@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Assets/js/app.es5.js",
+    "inputFile": "Assets/js/app.js"
+  },
+  {
+    "outputFile": "Assets/css/app-padrao.css",
+    "inputFile": "Assets/css/app-padrao.scss"
+  }
+]

@@ -1,0 +1,38 @@
+﻿/// <reference path="../app-padrao.scss" />
+
+@import "../../../bower_components/angular-material/angular-material.scss";
+
+md-toolbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $z-index-sidenav + 1;
+
+    .md-headline, h1.md-headline {
+        @extend .md-headline;
+        width: $tema-tamanho-sidenav;
+        /*margin-right: 100px;*/
+    }
+
+    .md-title, h2.md-title {
+        @extend .md-title;
+    }
+}
+
+.md-sidenav-left {
+    width: $tema-tamanho-sidenav;
+}
+
+.md-sidenav-backdrop {
+    height: 100% !important;
+}
+
+md-list-item > a.md-button {
+    margin: 0;
+}
+
+/*md-button.md-fab-adicionar-movimentacao {
+    position: fixed;
+    
+}*/

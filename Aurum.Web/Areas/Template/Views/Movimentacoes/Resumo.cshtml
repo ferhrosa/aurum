@@ -1,0 +1,100 @@
+﻿
+@*<h1>Resumo</h1>*@
+
+<div layout="row">
+    <md-card flex="50">
+        <md-card-content>
+            <div>conta 1</div>
+            <div>conta 2</div>
+            <div>conta 3</div>
+        </md-card-content>
+    </md-card>
+    <md-card flex="40" flex-offset="10">
+        <md-card-content>
+            <div>filtro de</div>
+            <div>filtro para</div>
+        </md-card-content>
+    </md-card>
+</div>
+
+<md-card>
+    <md-card-content class="extrato">
+        <table>
+            <tbody>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">01/05/2016</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 420,00</td>
+                    <td rowspan="4" class="botao-adicionar">
+                        <md-button class="md-icon-button" aria-label="Adicionar" ng-click="homeSvc.adicionarMovimentacao()">
+                            <md-icon>add_box</md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Combustível</td>
+                    <td class="valor negativo">R$ -70,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Pão</td>
+                    <td class="valor negativo">R$ -4,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Mercado</td>
+                    <td class="valor negativo">R$ -50,00</td>
+                </tr>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">02/05/2016</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 316,00</td>
+                    <td rowspan="3" class="botao-adicionar">
+                        <md-button class="md-icon-button" aria-label="Adicionar" ng-click="homeSvc.adicionarMovimentacao()">
+                            <md-icon>add_box</md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boleto de alguma coisa</td>
+                    <td class="valor negativo">R$ -200,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Recebemos alguma coisa de alguém</td>
+                    <td class="valor positivo">R$ 120,00</td>
+                </tr>
+                <tr class="final-dia">
+                    <td colspan="2" class="titulo-saldo">Saldo final</td>
+                    <td class="cabecalho valor positivo">R$ 236,00</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-card-content>
+</md-card>
+
+
+@*<form ng-submit="home.adicionarItem()">
+        <md-input-container>
+            <label>Decrição</label>
+            <input type="text" ng-model="home.itemAdicionando" md-max-length="15" />
+        </md-input-container>
+
+        <md-button type="submit" class="md-raised md-primary">Adicionar</md-button>
+    </form>
+
+    <md-list>
+        <md-list-item ng-repeat="item in home.lista">{{item}}</md-list-item>
+    </md-list>
+
+    <md-list>
+        <md-list-item>Item 1</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+        <md-list-item>Item 2</md-list-item>
+    </md-list>*@

@@ -1,0 +1,27 @@
+﻿/// <reference path="../app-padrao.scss" />
+
+body {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    padding-top: $toolbar-height;
+    background-color: $tema-cor-pagina-fundo;
+
+    @media only screen and (min-width: 0) and (max-width: $layout-breakpoint-sm - 1) and (orientation: portrait) {
+        padding-top: $toolbar-height-mobile-portrait;
+    }
+
+    @media only screen and (min-width: 0) and (max-width: $layout-breakpoint-sm - 1) and (orientation: landscape) {
+        padding-top: $toolbar-height-mobile-landscape;
+    }
+}
+
+content[ng-view]
+{
+    overflow: auto;
+    padding: 10px;
+    padding-bottom: $button-fab-height + $button-fab-padding*2;
+}
