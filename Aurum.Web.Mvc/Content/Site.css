@@ -1,0 +1,514 @@
+﻿html
+{
+    background-color: #e2e2e2;
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: #efefef;
+    border-top: solid 10px #C90;
+    color: #333;
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+a
+{
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    a:link, a:visited, a:active, a:hover
+    {
+        color: #333;
+    }
+
+    a:hover
+    {
+        background-color: #c7d1d6;
+    }
+
+header, footer, hgroup, nav, section
+{
+    display: block;
+}
+
+mark
+{
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left
+{
+    float: left;
+}
+
+.float-right
+{
+    float: right;
+}
+
+.clear-fix:after
+{
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1
+{
+    font-size: 2em;
+}
+
+h2
+{
+    margin: 20px 0 10px 0;
+    font-size: 1.75em;
+    font-weight: normal;
+    color: #333;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper
+{
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+#body
+{
+    background-color: #fff;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+.main-content
+{
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.featured + .main-content
+{
+}
+
+footer
+{
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+    height: 100px;
+}
+
+
+/* site title
+----------------------------------------------------------*/
+.site-title
+{
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.3em;
+    margin: 20px 0;
+}
+
+    .site-title a, .site-title a:hover, .site-title a:active
+    {
+        background: none;
+        color: #666666;
+        outline: none;
+        text-decoration: none;
+    }
+
+        .site-title a > *
+        {
+            vertical-align: middle;
+        }
+
+/* page elements
+----------------------------------------------------------*/
+/* styles for validation helpers */
+.field-validation-error
+{
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+input[type="text"].input-validation-error, input[type="password"].input-validation-error
+{
+    border: 1px solid #e80c4d;
+}
+
+.validation-summary-errors
+{
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* tables
+----------------------------------------------------------*/
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+}
+
+th
+{
+    font-size: 1.2em;
+    text-align: left;
+    border: none 0px;
+    padding-left: 0;
+}
+
+    th a
+    {
+        display: block;
+        position: relative;
+    }
+
+        th a:link, th a:visited, th a:active, th a:hover
+        {
+            color: #333;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0;
+        }
+
+        th a:hover
+        {
+            color: #000;
+        }
+
+    th.asc a, th.desc a
+    {
+        margin-right: .75em;
+    }
+
+        th.asc a:after, th.desc a:after
+        {
+            display: block;
+            position: absolute;
+            right: 0em;
+            top: 0;
+            font-size: 0.75em;
+        }
+
+        th.asc a:after
+        {
+            content: '▲';
+        }
+
+        th.desc a:after
+        {
+            content: '▼';
+        }
+
+td
+{
+    padding: 0.25em 2em 0.25em 0em;
+    border: 0 none;
+}
+
+tr.pager td
+{
+    padding: 0 0.25em 0 0;
+}
+
+
+.Indice
+{
+    display: inline-block;
+    width: 300px;
+    height: 58px;
+    margin: 0 5px 5px 0;
+    padding: 5px;
+    vertical-align: middle;
+    border-top: solid 3px #bbb;
+    background: #ddd;
+    text-decoration: none;
+    /*border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;*/
+}
+
+    .Indice:hover
+    {
+        border-color: #c90;
+        background: #eee0cc;
+    }
+
+        .Indice:hover b
+        {
+            color: #c60;
+        }
+
+    .Indice img
+    {
+        width: 48px;
+        height: 48px;
+        float: left;
+        margin: 5px 10px 5px 2px;
+    }
+
+    .Indice b
+    {
+        font: bold 13px "Segoe UI", Verdana, Arial;
+        color: #333;
+    }
+
+    .Indice em
+    {
+        font: italic 11px Verdana;
+        color: #666666;
+    }
+
+
+table.grid
+{
+}
+
+    table.grid th, table.grid td
+    {
+        margin: 0;
+        padding: 2px 5px;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+
+    table.grid input[type="checkbox"]
+    {
+        cursor: pointer;
+    }
+
+    table.grid > tbody > tr > td > input[type="checkbox"]
+    {
+        visibility: hidden;
+    }
+        table.grid > tbody > tr > td > input[type="checkbox"][disabled="disabled"]
+        {
+            visibility: visible;
+        }
+
+    table.grid > tbody > tr:hover > td > input[type="checkbox"],
+    table.grid > tbody > tr.selecionada > td > input[type="checkbox"]
+    {
+        visibility: visible;
+    }
+
+    table.grid > thead > tr > th
+    {
+        font: normal 14px "Segoe UI";
+        background: #ddd;
+        border-top: solid 1px;
+        border-bottom: solid 3px;
+        border-color: #bbb;
+    }
+
+        table.grid > thead > tr > th:hover
+        {
+            border-color: #c60;
+            color: #c60;
+        }
+
+    table.grid > tbody > tr > td
+    {
+        font: normal 12px "Calibri";
+        background: #fafafa;
+    }
+
+    table.grid > tbody > tr.alternativa > td
+    {
+        background: #eaeaea;
+    }
+
+    table.grid > tbody > tr.selecionada > td
+    {
+        background: #fc9;
+    }
+    table.grid > tbody > tr.alternativa.selecionada > td
+    {
+        background: #eb8;
+    }
+
+    table.grid > tbody > tr > td[name="chkSelecionar"]
+    {
+        border-right: dashed 1px #ddd;
+    }
+
+
+
+
+    table.grid > tbody > tr > td.centralizada
+    {
+        text-align: center;
+    }
+
+
+
+/********************
+*   Mobile Styles   *
+********************/
+@media only screen and (max-width: 850px)
+{
+
+    /* header
+        ----------------------------------------------------------*/
+    header .float-left, header .float-right
+    {
+        float: none;
+    }
+
+    /* logo */
+    header .site-title
+    {
+        margin: 10px;
+        text-align: center;
+    }
+
+    /* login */
+    #login
+    {
+        font-size: .85em;
+        margin: 0 0 12px;
+        text-align: center;
+    }
+
+        #login ul
+        {
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        #login li
+        {
+            display: inline;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login a
+        {
+            background: none;
+            color: #999;
+            font-weight: 600;
+            margin: 2px;
+            padding: 0;
+        }
+
+            #login a:hover
+            {
+                color: #333;
+            }
+
+    /* menu */
+    nav
+    {
+        margin-bottom: 5px;
+    }
+
+    ul#menu
+    {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        ul#menu li
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+
+    /* main layout
+        ----------------------------------------------------------*/
+    .main-content, .featured + .main-content
+    {
+        background-position: 10px 0;
+    }
+
+    .content-wrapper
+    {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .featured .content-wrapper
+    {
+        padding: 10px;
+    }
+
+    /* page content */
+    article, aside
+    {
+        float: none;
+        width: 100%;
+    }
+
+    /* footer
+        ----------------------------------------------------------*/
+    footer .float-left, footer .float-right
+    {
+        float: none;
+    }
+
+    footer
+    {
+        text-align: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+        footer p
+        {
+            margin: 0;
+        }
+}

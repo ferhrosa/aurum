@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServicoAurum.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicoAurum.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7620/Aurum.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ServicoAurum.Dados" />
+  <xs:complexType name="ArrayOfCartao">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cartao" nillable="true" type="tns:Cartao" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCartao" nillable="true" type="tns:ArrayOfCartao" />
+  <xs:complexType name="Cartao">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/ServicoAurum.Dados" base="q1:Entidade">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CodCartao" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CodConta" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Descricao" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PossuiAdicional" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TelefoneSac" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Titular" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Validade" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Vencimento" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Cartao" nillable="true" type="tns:Cartao" />
+  <xs:complexType name="ArrayOfConta">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Conta" nillable="true" type="tns:Conta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConta" nillable="true" type="tns:ArrayOfConta" />
+  <xs:complexType name="Conta">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/ServicoAurum.Dados" base="q2:Entidade">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AgenciaConta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Banco" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodConta" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Tipo" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Conta" nillable="true" type="tns:Conta" />
+</xs:schema>

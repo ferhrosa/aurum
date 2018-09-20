@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Aurum.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AurumStoreContainer">
+          <EntitySet Name="Cartao" EntityType="Aurum.Store.Cartao" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Categoria" EntityType="Aurum.Store.Categoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Conta" EntityType="Aurum.Store.Conta" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Movimento" EntityType="Aurum.Store.Movimento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MovimentoDescricao" EntityType="Aurum.Store.MovimentoDescricao" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Taxa" EntityType="Aurum.Store.Taxa" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Cartao_Conta" Association="Aurum.Store.FK_Cartao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Cartao" EntitySet="Cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Cartao" Association="Aurum.Store.FK_Movimento_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Categoria" Association="Aurum.Store.FK_Movimento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Conta" Association="Aurum.Store.FK_Movimento_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoDescricao" Association="Aurum.Store.FK_MovimentoDescricao">
+            <End Role="MovimentoDescricao" EntitySet="MovimentoDescricao" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoPrimeiraParcela" Association="Aurum.Store.FK_MovimentoPrimeiraParcela">
+            <End Role="Movimento" EntitySet="Movimento" />
+            <End Role="Movimento1" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoReserva" Association="Aurum.Store.FK_MovimentoReserva">
+            <End Role="Movimento" EntitySet="Movimento" />
+            <End Role="Movimento1" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taxa_Cartao" Association="Aurum.Store.FK_Taxa_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Taxa" EntitySet="Taxa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taxa_Conta" Association="Aurum.Store.FK_Taxa_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Taxa" EntitySet="Taxa" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cartao">
+          <Key>
+            <PropertyRef Name="CodCartao" />
+          </Key>
+          <Property Name="CodCartao" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="CodConta" Type="int" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Numero" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="Titular" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Vencimento" Type="tinyint" Nullable="false" />
+          <Property Name="Validade" Type="datetime" />
+          <Property Name="PossuiAdicional" Type="bit" Nullable="false" />
+          <Property Name="TelefoneSac" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CodCategoria" />
+          </Key>
+          <Property Name="CodCategoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="CodConta" />
+          </Key>
+          <Property Name="CodConta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Banco" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Tipo" Type="tinyint" Nullable="false" />
+          <Property Name="AgenciaConta" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Movimento">
+          <Key>
+            <PropertyRef Name="CodMovimento" />
+          </Key>
+          <Property Name="CodMovimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="DataHoraInclusao" Type="datetime" Nullable="false" />
+          <Property Name="Data" Type="date" />
+          <Property Name="MesAno" Type="date" Nullable="false" />
+          <Property Name="CodMovimentoDescricao" Type="int" Nullable="false" />
+          <Property Name="CodCategoria" Type="int" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="CodConta" Type="int" />
+          <Property Name="CodCartao" Type="int" />
+          <Property Name="Reserva" Type="bit" Nullable="false" />
+          <Property Name="CodMovimentoReserva" Type="int" />
+          <Property Name="CodMovimentoPrimeiraParcela" Type="int" />
+          <Property Name="Observacao" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MovimentoDescricao">
+          <Key>
+            <PropertyRef Name="CodMovimentoDescricao" />
+          </Key>
+          <Property Name="CodMovimentoDescricao" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Taxa">
+          <Key>
+            <PropertyRef Name="CodTaxa" />
+          </Key>
+          <Property Name="CodTaxa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="CodConta" Type="int" />
+          <Property Name="CodCartao" Type="int" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="Validade" Type="date" />
+        </EntityType>
+        <Association Name="FK_Cartao_Conta">
+          <End Role="Conta" Type="Aurum.Store.Conta" Multiplicity="0..1" />
+          <End Role="Cartao" Type="Aurum.Store.Cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Cartao">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Cartao">
+          <End Role="Cartao" Type="Aurum.Store.Cartao" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="CodCartao" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Categoria">
+          <End Role="Categoria" Type="Aurum.Store.Categoria" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="CodCategoria" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Conta">
+          <End Role="Conta" Type="Aurum.Store.Conta" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoDescricao">
+          <End Role="MovimentoDescricao" Type="Aurum.Store.MovimentoDescricao" Multiplicity="1" />
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovimentoDescricao">
+              <PropertyRef Name="CodMovimentoDescricao" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodMovimentoDescricao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoPrimeiraParcela">
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="0..1" />
+          <End Role="Movimento1" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimento">
+              <PropertyRef Name="CodMovimento" />
+            </Principal>
+            <Dependent Role="Movimento1">
+              <PropertyRef Name="CodMovimentoPrimeiraParcela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoReserva">
+          <End Role="Movimento" Type="Aurum.Store.Movimento" Multiplicity="0..1" />
+          <End Role="Movimento1" Type="Aurum.Store.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimento">
+              <PropertyRef Name="CodMovimento" />
+            </Principal>
+            <Dependent Role="Movimento1">
+              <PropertyRef Name="CodMovimentoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taxa_Cartao">
+          <End Role="Cartao" Type="Aurum.Store.Cartao" Multiplicity="0..1" />
+          <End Role="Taxa" Type="Aurum.Store.Taxa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="CodCartao" />
+            </Principal>
+            <Dependent Role="Taxa">
+              <PropertyRef Name="CodCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taxa_Conta">
+          <End Role="Conta" Type="Aurum.Store.Conta" Multiplicity="0..1" />
+          <End Role="Taxa" Type="Aurum.Store.Taxa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Taxa">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Cartao_Excluir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodCartao" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Cartao_Salvar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodCartao" Type="int" Mode="In" />
+          <Parameter Name="Ativo" Type="bit" Mode="In" />
+          <Parameter Name="CodConta" Type="int" Mode="In" />
+          <Parameter Name="Descricao" Type="varchar" Mode="In" />
+          <Parameter Name="Numero" Type="varchar" Mode="In" />
+          <Parameter Name="Titular" Type="varchar" Mode="In" />
+          <Parameter Name="Vencimento" Type="tinyint" Mode="In" />
+          <Parameter Name="Validade" Type="datetime" Mode="In" />
+          <Parameter Name="PossuiAdicional" Type="bit" Mode="In" />
+          <Parameter Name="TelefoneSac" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Conta_Excluir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodConta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Conta_Salvar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodConta" Type="int" Mode="In" />
+          <Parameter Name="Ativo" Type="bit" Mode="In" />
+          <Parameter Name="Banco" Type="varchar" Mode="In" />
+          <Parameter Name="Tipo" Type="tinyint" Mode="In" />
+          <Parameter Name="AgenciaConta" Type="varchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Aurum" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BancoDados" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cartao" EntityType="Aurum.Cartao" />
+          <EntitySet Name="Categoria" EntityType="Aurum.Categoria" />
+          <EntitySet Name="Conta" EntityType="Aurum.Conta" />
+          <EntitySet Name="Movimento" EntityType="Aurum.Movimento" />
+          <EntitySet Name="MovimentoDescricao" EntityType="Aurum.MovimentoDescricao" />
+          <EntitySet Name="Taxa" EntityType="Aurum.Taxa" />
+          <AssociationSet Name="FK_Cartao_Conta" Association="Aurum.FK_Cartao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Cartao" EntitySet="Cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Cartao" Association="Aurum.FK_Movimento_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taxa_Cartao" Association="Aurum.FK_Taxa_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Taxa" EntitySet="Taxa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Categoria" Association="Aurum.FK_Movimento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimento_Conta" Association="Aurum.FK_Movimento_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Taxa_Conta" Association="Aurum.FK_Taxa_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Taxa" EntitySet="Taxa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoPrimeiraParcela" Association="Aurum.FK_MovimentoPrimeiraParcela">
+            <End Role="Movimento" EntitySet="Movimento" />
+            <End Role="Movimento1" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoReserva" Association="Aurum.FK_MovimentoReserva">
+            <End Role="Movimento" EntitySet="Movimento" />
+            <End Role="Movimento1" EntitySet="Movimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimentoDescricao" Association="Aurum.FK_MovimentoDescricao">
+            <End Role="MovimentoDescricao" EntitySet="MovimentoDescricao" />
+            <End Role="Movimento" EntitySet="Movimento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cartao">
+          <Key>
+            <PropertyRef Name="CodCartao" />
+          </Key>
+          <Property Name="CodCartao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="CodConta" Type="Int32" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="Titular" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Vencimento" Type="Byte" Nullable="false" />
+          <Property Name="Validade" Type="DateTime" />
+          <Property Name="PossuiAdicional" Type="Boolean" Nullable="false" />
+          <Property Name="TelefoneSac" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Conta" Relationship="Aurum.FK_Cartao_Conta" FromRole="Cartao" ToRole="Conta" />
+          <NavigationProperty Name="Movimentos" Relationship="Aurum.FK_Movimento_Cartao" FromRole="Cartao" ToRole="Movimento" />
+          <NavigationProperty Name="Taxas" Relationship="Aurum.FK_Taxa_Cartao" FromRole="Cartao" ToRole="Taxa" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CodCategoria" />
+          </Key>
+          <Property Name="CodCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Movimentos" Relationship="Aurum.FK_Movimento_Categoria" FromRole="Categoria" ToRole="Movimento" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="CodConta" />
+          </Key>
+          <Property Name="CodConta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Banco" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Tipo" Type="Byte" Nullable="false" />
+          <Property Name="AgenciaConta" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cartoes" Relationship="Aurum.FK_Cartao_Conta" FromRole="Conta" ToRole="Cartao" />
+          <NavigationProperty Name="Movimentos" Relationship="Aurum.FK_Movimento_Conta" FromRole="Conta" ToRole="Movimento" />
+          <NavigationProperty Name="Taxas" Relationship="Aurum.FK_Taxa_Conta" FromRole="Conta" ToRole="Taxa" />
+        </EntityType>
+        <EntityType Name="Movimento">
+          <Key>
+            <PropertyRef Name="CodMovimento" />
+          </Key>
+          <Property Name="CodMovimento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="DataHoraInclusao" Type="DateTime" Nullable="false" />
+          <Property Name="Data" Type="DateTime" />
+          <Property Name="MesAno" Type="DateTime" Nullable="false" />
+          <Property Name="CodMovimentoDescricao" Type="Int32" Nullable="false" />
+          <Property Name="CodCategoria" Type="Int32" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="CodConta" Type="Int32" />
+          <Property Name="CodCartao" Type="Int32" />
+          <Property Name="Reserva" Type="Boolean" Nullable="false" />
+          <Property Name="CodMovimentoReserva" Type="Int32" />
+          <Property Name="CodMovimentoPrimeiraParcela" Type="Int32" />
+          <Property Name="Observacao" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cartao" Relationship="Aurum.FK_Movimento_Cartao" FromRole="Movimento" ToRole="Cartao" />
+          <NavigationProperty Name="Categoria" Relationship="Aurum.FK_Movimento_Categoria" FromRole="Movimento" ToRole="Categoria" />
+          <NavigationProperty Name="Conta" Relationship="Aurum.FK_Movimento_Conta" FromRole="Movimento" ToRole="Conta" />
+          <NavigationProperty Name="MovimentosDestaPrimeiraParcela" Relationship="Aurum.FK_MovimentoPrimeiraParcela" FromRole="Movimento" ToRole="Movimento1" />
+          <NavigationProperty Name="MovimentoPrimeiraParcela" Relationship="Aurum.FK_MovimentoPrimeiraParcela" FromRole="Movimento1" ToRole="Movimento" />
+          <NavigationProperty Name="MovimentosDestaReserva" Relationship="Aurum.FK_MovimentoReserva" FromRole="Movimento" ToRole="Movimento1" />
+          <NavigationProperty Name="MovimentoReserva" Relationship="Aurum.FK_MovimentoReserva" FromRole="Movimento1" ToRole="Movimento" />
+          <NavigationProperty Name="MovimentoDescricao" Relationship="Aurum.FK_MovimentoDescricao" FromRole="Movimento" ToRole="MovimentoDescricao" />
+        </EntityType>
+        <EntityType Name="MovimentoDescricao">
+          <Key>
+            <PropertyRef Name="CodMovimentoDescricao" />
+          </Key>
+          <Property Name="CodMovimentoDescricao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Movimentos" Relationship="Aurum.FK_MovimentoDescricao" FromRole="MovimentoDescricao" ToRole="Movimento" />
+        </EntityType>
+        <EntityType Name="Taxa">
+          <Key>
+            <PropertyRef Name="CodTaxa" />
+          </Key>
+          <Property Name="CodTaxa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="CodConta" Type="Int32" />
+          <Property Name="CodCartao" Type="Int32" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cartao" Relationship="Aurum.FK_Taxa_Cartao" FromRole="Taxa" ToRole="Cartao" />
+          <NavigationProperty Name="Conta" Relationship="Aurum.FK_Taxa_Conta" FromRole="Taxa" ToRole="Conta" />
+          <Property Type="DateTime" Name="Validade" />
+        </EntityType>
+        <Association Name="FK_Cartao_Conta">
+          <End Role="Conta" Type="Aurum.Conta" Multiplicity="0..1" />
+          <End Role="Cartao" Type="Aurum.Cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Cartao">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Cartao">
+          <End Role="Cartao" Type="Aurum.Cartao" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="CodCartao" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taxa_Cartao">
+          <End Role="Cartao" Type="Aurum.Cartao" Multiplicity="0..1" />
+          <End Role="Taxa" Type="Aurum.Taxa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="CodCartao" />
+            </Principal>
+            <Dependent Role="Taxa">
+              <PropertyRef Name="CodCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Categoria">
+          <End Role="Categoria" Type="Aurum.Categoria" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="CodCategoria" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimento_Conta">
+          <End Role="Conta" Type="Aurum.Conta" Multiplicity="0..1" />
+          <End Role="Movimento" Type="Aurum.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Taxa_Conta">
+          <End Role="Conta" Type="Aurum.Conta" Multiplicity="0..1" />
+          <End Role="Taxa" Type="Aurum.Taxa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="CodConta" />
+            </Principal>
+            <Dependent Role="Taxa">
+              <PropertyRef Name="CodConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoPrimeiraParcela">
+          <End Role="Movimento" Type="Aurum.Movimento" Multiplicity="0..1" />
+          <End Role="Movimento1" Type="Aurum.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimento">
+              <PropertyRef Name="CodMovimento" />
+            </Principal>
+            <Dependent Role="Movimento1">
+              <PropertyRef Name="CodMovimentoPrimeiraParcela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoReserva">
+          <End Role="Movimento" Type="Aurum.Movimento" Multiplicity="0..1" />
+          <End Role="Movimento1" Type="Aurum.Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimento">
+              <PropertyRef Name="CodMovimento" />
+            </Principal>
+            <Dependent Role="Movimento1">
+              <PropertyRef Name="CodMovimentoReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimentoDescricao">
+          <End Type="Aurum.MovimentoDescricao" Role="MovimentoDescricao" Multiplicity="1" />
+          <End Type="Aurum.Movimento" Role="Movimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovimentoDescricao">
+              <PropertyRef Name="CodMovimentoDescricao" />
+            </Principal>
+            <Dependent Role="Movimento">
+              <PropertyRef Name="CodMovimentoDescricao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AurumStoreContainer" CdmEntityContainer="BancoDados">
+          <EntitySetMapping Name="Cartao"><EntityTypeMapping TypeName="Aurum.Cartao"><MappingFragment StoreEntitySet="Cartao">
+            <ScalarProperty Name="CodCartao" ColumnName="CodCartao" />
+            <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+            <ScalarProperty Name="CodConta" ColumnName="CodConta" />
+            <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+            <ScalarProperty Name="Numero" ColumnName="Numero" />
+            <ScalarProperty Name="Titular" ColumnName="Titular" />
+            <ScalarProperty Name="Vencimento" ColumnName="Vencimento" />
+            <ScalarProperty Name="Validade" ColumnName="Validade" />
+            <ScalarProperty Name="PossuiAdicional" ColumnName="PossuiAdicional" />
+            <ScalarProperty Name="TelefoneSac" ColumnName="TelefoneSac" />
+          </MappingFragment></EntityTypeMapping>
+            <EntityTypeMapping TypeName="Aurum.Cartao">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Aurum.Store.Cartao_Salvar">
+                  <ScalarProperty Name="TelefoneSac" ParameterName="TelefoneSac" />
+                  <ScalarProperty Name="PossuiAdicional" ParameterName="PossuiAdicional" />
+                  <ScalarProperty Name="Validade" ParameterName="Validade" />
+                  <ScalarProperty Name="Vencimento" ParameterName="Vencimento" />
+                  <ScalarProperty Name="Titular" ParameterName="Titular" />
+                  <ScalarProperty Name="Numero" ParameterName="Numero" />
+                  <ScalarProperty Name="Descricao" ParameterName="Descricao" />
+                  <ScalarProperty Name="CodConta" ParameterName="CodConta" />
+                  <ScalarProperty Name="Ativo" ParameterName="Ativo" />
+                  <ScalarProperty Name="CodCartao" ParameterName="CodCartao" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="Aurum.Store.Cartao_Excluir">
+                  <ScalarProperty Name="CodCartao" ParameterName="CodCartao" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="Aurum.Store.Cartao_Salvar">
+                  <ScalarProperty Name="TelefoneSac" ParameterName="TelefoneSac" Version="Current" />
+                  <ScalarProperty Name="PossuiAdicional" ParameterName="PossuiAdicional" Version="Current" />
+                  <ScalarProperty Name="Validade" ParameterName="Validade" Version="Current" />
+                  <ScalarProperty Name="Vencimento" ParameterName="Vencimento" Version="Current" />
+                  <ScalarProperty Name="Titular" ParameterName="Titular" Version="Current" />
+                  <ScalarProperty Name="Numero" ParameterName="Numero" Version="Current" />
+                  <ScalarProperty Name="Descricao" ParameterName="Descricao" Version="Current" />
+                  <ScalarProperty Name="CodConta" ParameterName="CodConta" Version="Current" />
+                  <ScalarProperty Name="Ativo" ParameterName="Ativo" Version="Current" />
+                  <ScalarProperty Name="CodCartao" ParameterName="CodCartao" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categoria"><EntityTypeMapping TypeName="Aurum.Categoria"><MappingFragment StoreEntitySet="Categoria">
+            <ScalarProperty Name="CodCategoria" ColumnName="CodCategoria" />
+            <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+            <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Conta"><EntityTypeMapping TypeName="Aurum.Conta"><MappingFragment StoreEntitySet="Conta">
+            <ScalarProperty Name="CodConta" ColumnName="CodConta" />
+            <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+            <ScalarProperty Name="Banco" ColumnName="Banco" />
+            <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+            <ScalarProperty Name="AgenciaConta" ColumnName="AgenciaConta" />
+          </MappingFragment></EntityTypeMapping>
+            <EntityTypeMapping TypeName="Aurum.Conta">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="Aurum.Store.Conta_Salvar">
+                  <ScalarProperty Name="AgenciaConta" ParameterName="AgenciaConta" />
+                  <ScalarProperty Name="Tipo" ParameterName="Tipo" />
+                  <ScalarProperty Name="Banco" ParameterName="Banco" />
+                  <ScalarProperty Name="Ativo" ParameterName="Ativo" />
+                  <ScalarProperty Name="CodConta" ParameterName="CodConta" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="Aurum.Store.Conta_Salvar">
+                  <ScalarProperty Name="AgenciaConta" ParameterName="AgenciaConta" Version="Current" />
+                  <ScalarProperty Name="Tipo" ParameterName="Tipo" Version="Current" />
+                  <ScalarProperty Name="Banco" ParameterName="Banco" Version="Current" />
+                  <ScalarProperty Name="Ativo" ParameterName="Ativo" Version="Current" />
+                  <ScalarProperty Name="CodConta" ParameterName="CodConta" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="Aurum.Store.Conta_Excluir">
+                  <ScalarProperty Name="CodConta" ParameterName="CodConta" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Movimento"><EntityTypeMapping TypeName="Aurum.Movimento"><MappingFragment StoreEntitySet="Movimento">
+            <ScalarProperty Name="CodMovimento" ColumnName="CodMovimento" />
+            <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+            <ScalarProperty Name="DataHoraInclusao" ColumnName="DataHoraInclusao" />
+            <ScalarProperty Name="Data" ColumnName="Data" />
+            <ScalarProperty Name="MesAno" ColumnName="MesAno" />
+            <ScalarProperty Name="CodMovimentoDescricao" ColumnName="CodMovimentoDescricao" />
+            <ScalarProperty Name="CodCategoria" ColumnName="CodCategoria" />
+            <ScalarProperty Name="Valor" ColumnName="Valor" />
+            <ScalarProperty Name="CodConta" ColumnName="CodConta" />
+            <ScalarProperty Name="CodCartao" ColumnName="CodCartao" />
+            <ScalarProperty Name="Reserva" ColumnName="Reserva" />
+            <ScalarProperty Name="CodMovimentoReserva" ColumnName="CodMovimentoReserva" />
+            <ScalarProperty Name="CodMovimentoPrimeiraParcela" ColumnName="CodMovimentoPrimeiraParcela" />
+            <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MovimentoDescricao"><EntityTypeMapping TypeName="Aurum.MovimentoDescricao"><MappingFragment StoreEntitySet="MovimentoDescricao">
+            <ScalarProperty Name="CodMovimentoDescricao" ColumnName="CodMovimentoDescricao" />
+            <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Taxa"><EntityTypeMapping TypeName="Aurum.Taxa"><MappingFragment StoreEntitySet="Taxa">
+            <ScalarProperty Name="Validade" ColumnName="Validade" />
+                <ScalarProperty Name="CodTaxa" ColumnName="CodTaxa" />
+            <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+            <ScalarProperty Name="CodConta" ColumnName="CodConta" />
+            <ScalarProperty Name="CodCartao" ColumnName="CodCartao" />
+            <ScalarProperty Name="Valor" ColumnName="Valor" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="BancoDados" ZoomLevel="100">
+        <EntityTypeShape EntityType="Aurum.Cartao" Width="1.5" PointX="3" PointY="3.875" Height="3.518697916666667" IsExpanded="true" />
+        <EntityTypeShape EntityType="Aurum.Categoria" Width="1.5" PointX="3" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Aurum.Conta" Width="1.5" PointX="0.75" PointY="4.375" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Aurum.Movimento" Width="2.25" PointX="5.25" PointY="3.125" Height="5.057109375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Aurum.MovimentoDescricao" Width="1.5" PointX="7.75" PointY="1.125" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Aurum.Taxa" Width="1.5" PointX="8.25" PointY="4.5" Height="2.3648893229166674" IsExpanded="true" />
+        <AssociationConnector Association="Aurum.FK_Cartao_Conta" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.6535953776041667" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="5.6535953776041659" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="5.6535953776041667" />
+          <ConnectorPoint PointX="3" PointY="5.6535953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_Movimento_Cartao" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.6343489583333337" />
+          <ConnectorPoint PointX="5.25" PointY="5.6343489583333337" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_Taxa_Cartao" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="7.3936979166666674" />
+          <ConnectorPoint PointX="3.75" PointY="8.432109375" />
+          <ConnectorPoint PointX="7.875" PointY="8.432109375" />
+          <ConnectorPoint PointX="7.875" PointY="5.9123990384615386" />
+          <ConnectorPoint PointX="8.25" PointY="5.9123990384615386" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_Movimento_Categoria" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="6.375" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="6.375" PointY="3.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_Movimento_Conta" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6.9321907552083335" />
+          <ConnectorPoint PointX="1.5" PointY="7.9153043619791665" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="7.9153043619791656" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="7.9153043619791665" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.9153043619791656" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.9153043619791665" />
+          <ConnectorPoint PointX="5.25" PointY="7.9153043619791665" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_Taxa_Conta" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="4.375" />
+          <ConnectorPoint PointX="1.5" PointY="4.125" />
+          <ConnectorPoint PointX="2.75" PointY="4.125" />
+          <ConnectorPoint PointX="2.75" PointY="8.447734375" />
+          <ConnectorPoint PointX="7.875" PointY="8.447734375" />
+          <ConnectorPoint PointX="7.875" PointY="4.9288667860576929" />
+          <ConnectorPoint PointX="8.25" PointY="4.9288667860576929" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_MovimentoPrimeiraParcela" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.0478846153846151" PointY="8.3744108072916656" />
+          <ConnectorPoint PointX="6.0478846153846151" PointY="8.6244108072916656" />
+          <ConnectorPoint PointX="6.7176923076923076" PointY="8.6244108072916656" />
+          <ConnectorPoint PointX="6.7176923076923076" PointY="8.3744108072916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_MovimentoReserva" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="5.1699656951121788" />
+          <ConnectorPoint PointX="7.75" PointY="5.1699656951121788" />
+          <ConnectorPoint PointX="7.75" PointY="6.59999030949519" />
+          <ConnectorPoint PointX="7.5" PointY="6.59999030949519" />
+        </AssociationConnector>
+        <AssociationConnector Association="Aurum.FK_MovimentoDescricao" >
+          <ConnectorPoint PointX="7.75" PointY="2.72068359375" />
+          <ConnectorPoint PointX="7.5" PointY="3.125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

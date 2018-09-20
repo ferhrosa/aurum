@@ -1,0 +1,12 @@
+﻿
+<script id="tmplIndiceBase" type="text/x-jquery-tmpl">
+    <div id="indice"></div>
+</script>
+
+<script id="tmplIndice" type="text/x-jquery-tmpl">
+    <a href="@Url.Content("~")#/${Url}" class="Indice">
+        <img alt="${Titulo}" src="@Url.Content("~")Imagens/${Imagem}.png" />
+        <b>${Titulo}</b><br />
+        <em>${Descricao}</em>
+    </a>
+</script>

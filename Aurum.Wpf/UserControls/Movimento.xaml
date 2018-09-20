@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Aurum.Wpf.UserControls.Movimento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:aurum="clr-namespace:Aurum"
+             xmlns:aurumuc="clr-namespace:Aurum.Wpf.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+    <UserControl.Resources>
+        <aurum:ValorConverter x:Key="ValorConverter" />
+        <aurum:ObservacaoConverter x:Key="observacaoConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TabControl Name="tcMovimento" Grid.Row="0" Margin="0,10,0,0" MouseLeftButtonUp="SelecionarAba" KeyUp="SelecionarAba">
+            <TabItem Header="Selecionar mês" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <aurumuc:MesAno x:Name="maSelecionar" />
+                    <Button Name="btnSelecionar" Content="OK" Width="30" Margin="10,0,0,0" Click="btnSelecionar_Click" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <TabControl Grid.Row="1" Margin="0,5,0,0">
+            <TabItem Header="Resumo">
+                <aurumuc:Resumo x:Name="resumo" />
+            </TabItem>
+            <TabItem Header="Detalhes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal" FlowDirection="LeftToRight">
+                        <Button Name="btnAdicionar" Content="Adicionar" Margin="0,0,15,0" Click="btnAdicionar_Click" />
+                        <Button Name="btnAlterar" Content="Alterar" Margin="0,0,15,0" Click="btnAlterar_Click" />
+                        <Button Name="btnExcluir" Content="Excluir" Margin="0,0,15,0" Click="btnExcluir_Click" />
+                        <Button Name="btnSalvar" Content="Salvar" Margin="0,0,5,0" Click="btnSalvar_Click" />
+                        <Button Name="btnCancelar" Content="Cancelar" Margin="0,0,15,0" Click="btnCancelar_Click" />
+                        <Button Name="btnReplicar" Content="Replicar para o próximo mês" Click="btnReplicar_Click" />
+                    </StackPanel>
+                    <Grid Name="gridCampos" Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Código:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+                        <TextBox Name="tbCodMovimento" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" />
+                        <CheckBox Name="cbAtivo" Content="Ativo" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" IsChecked="True" Margin="80,0,0,0" VerticalAlignment="Center" Visibility="Collapsed" />
+                        <CheckBox Name="cbReserva" Content="Reserva" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <Label Content="Data:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+                        <DatePicker Name="dtData" Grid.Column="1" Grid.Row="1" Height="25" HorizontalAlignment="Left" Margin="0,3,0,3" VerticalAlignment="Top" Width="115" UseLayoutRounding="True" />
+                        <Label Content="Mês:" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Visibility="Collapsed" />
+                        <DatePicker Name="dtMes" Grid.Column="3" Grid.Row="1" Height="25" HorizontalAlignment="Left" Margin="0,3,0,3" VerticalAlignment="Top" Width="115" UseLayoutRounding="True" Visibility="Collapsed" />
+                        <Label Content="Tipo:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+                            <RadioButton Name="rbTipoCredito" Content="Crédito" Margin="0,0,20,0" GroupName="Tipo" VerticalAlignment="Center" Foreground="Green" />
+                            <RadioButton Name="rbTipoDebito" Content="Débito" GroupName="Tipo" IsChecked="True" VerticalAlignment="Center" Foreground="Red" />
+                        </StackPanel>
+                        <Label Content="Valor:" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <aurum:ValorTextBox x:Name="tbValor" Grid.Column="3" Grid.Row="2" Height="23" VerticalAlignment="Center" Margin="0,3,0,3" />
+                        <Label Content="Categoria:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <ComboBox Name="cboCategoria" Grid.Column="1" Margin="0,3,0,3" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" DisplayMemberPath="Descricao" SelectedValuePath="CodCategoria" />
+                        <Label Content="Descrição:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <ComboBox Name="cboDescricao" Height="23" Margin="0,3,0,3" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" IsEditable="True" DisplayMemberPath="Descricao" SelectedValuePath="CodMovimentoDescricao" />
+                        <Label Content="Conta:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <ComboBox Name="cboConta" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,3,0,3" Grid.Row="5" VerticalAlignment="Center" DisplayMemberPath="AgenciaConta" SelectedValuePath="CodConta" />
+                        <Label Content="Cartão:" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <ComboBox Name="cboCartao" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,3,0,3" Grid.Row="6" VerticalAlignment="Center" DisplayMemberPath="Descricao" SelectedValuePath="CodCartao" />
+                        <Label Content="Reserva:" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <ComboBox Name="cboMovimento" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,3,0,3" Grid.Row="7" VerticalAlignment="Center" DisplayMemberPath="MovimentoDescricao.Descricao" SelectedValuePath="CodMovimento" />
+                        <Label Content="Observação:" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" />
+                        <TextBox Name="tbObservacao" Height="55" Margin="0,3,0,3" MaxLength="250" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" />
+                    </Grid>
+                    <DataGrid Name="dgMovimento" AutoGenerateColumns="False" EnableRowVirtualization="False" Grid.Row="2" Height="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" AlternatingRowBackground="#f8f8f8" IsReadOnly="True" VerticalGridLinesBrush="Silver" HorizontalGridLinesBrush="Gray" SelectionChanged="dgMovimento_SelectionChanged" HeadersVisibility="Column" ItemsSource="{Binding Mode=OneTime}" MouseDoubleClick="dgMovimento_MouseDoubleClick" LoadingRow="dgMovimento_LoadingRow" Sorting="dgMovimento_Sorting" CanUserSortColumns="True">
+                        <DataGrid.Columns>
+                            <!--<DataGridCheckBoxColumn x:Name="clSelecionar" Width="Auto">
+                                <DataGridCheckBoxColumn.Header>
+                                    <CheckBox Name="cbSelecionarTodos" />
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>-->
+                            <DataGridTextColumn x:Name="codMovimentoColumn" Binding="{Binding Path=CodMovimento}" Header="Código" Width="Auto" Visibility="Collapsed" />
+                            <DataGridCheckBoxColumn x:Name="ativoColumn" Binding="{Binding Path=Ativo}" Header="Ativo" Width="Auto" Visibility="Collapsed" />
+                            <DataGridCheckBoxColumn x:Name="reservaColumn" Binding="{Binding Path=Reserva}" Header="Reserva" Width="Auto" />
+                            <DataGridTextColumn x:Name="dataColumn" Binding="{Binding Path=Data, StringFormat='dd/MM/yyyy'}" Header="Data" Width="Auto" />
+                            <DataGridTextColumn x:Name="mesAnoColumn" Binding="{Binding Path=MesAno, StringFormat='MM/yyyy'}" Header="Mês" Width="Auto" Visibility="Collapsed" />
+                            <DataGridTextColumn x:Name="codCategoriaColumn" Binding="{Binding Path=Categoria.Descricao}" Header="Categoria" Width="*" />
+                            <DataGridTextColumn x:Name="valorColumn" Binding="{Binding Path=Valor, Converter={StaticResource ValorConverter}}" Header="Valor" SortMemberPath="Valor" Width="Auto" />
+                            <DataGridTextColumn x:Name="descricaoColumn" Binding="{Binding Path=MovimentoDescricao.Descricao}" Header="Descrição" Width="*" />
+                            <DataGridTextColumn x:Name="codContaColumn" Binding="{Binding Path=Conta.AgenciaConta}" Header="Conta" Width="*" />
+                            <DataGridTextColumn x:Name="codCartaoColumn" Binding="{Binding Path=Cartao.Descricao}" Header="Cartão" Width="*" />
+                            <DataGridTextColumn x:Name="codMovimentoReservaColumn" Binding="{Binding Path=MovimentoReserva.MovimentoDescricao.Descricao}" Header="Movimento Reserva" Width="*" />
+                            <DataGridTextColumn x:Name="observacaoColumn" Binding="{Binding Path=Observacao, Converter={StaticResource observacaoConverter}}" Header="Observação" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

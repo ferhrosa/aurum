@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c52465b6-70af-4fe1-9386-756127bba388" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7620/Aurum.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Aurum.xsd" MetadataType="Schema" ID="20bf1f3a-3bee-4383-a0d6-8a4490c84dc5" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?xsd=xsd1" />
+    <MetadataFile FileName="Aurum1.xsd" MetadataType="Schema" ID="525650ca-2f25-4af9-8eb4-ee0241ed8b13" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?xsd=xsd3" />
+    <MetadataFile FileName="Aurum.disco" MetadataType="Disco" ID="bc71c19f-e9fe-437f-b5ec-39718bed7e5c" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?disco" />
+    <MetadataFile FileName="Aurum2.xsd" MetadataType="Schema" ID="221e92ff-46ac-4654-9ea7-b73e3753e993" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?xsd=xsd0" />
+    <MetadataFile FileName="Aurum.wsdl" MetadataType="Wsdl" ID="55e09b77-2f8f-40f0-8bb0-53226446f6ad" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?wsdl" />
+    <MetadataFile FileName="Aurum11.xsd" MetadataType="Schema" ID="f1322838-e4da-4bd6-9005-cd89d55a5487" SourceId="1" SourceUrl="http://localhost:7620/Aurum.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

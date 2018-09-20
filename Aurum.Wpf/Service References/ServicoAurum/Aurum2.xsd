@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7620/Aurum.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServicoAurum.Entidades" />
+  <xs:element name="ListarCartao">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarCartaoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ServicoAurum.Entidades" minOccurs="0" name="ListarCartaoResult" nillable="true" type="q1:ArrayOfCartao" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SalvarCartao">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codCartao" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="ativo" type="xs:boolean" />
+        <xs:element minOccurs="0" name="codConta" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="descricao" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="numero" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="titular" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vencimento" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="validade" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="possuiAdicional" type="xs:boolean" />
+        <xs:element minOccurs="0" name="telefoneSac" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SalvarCartaoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SalvarCartaoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcluirCartao">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codCartao" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcluirCartaoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarConta">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarContaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ServicoAurum.Entidades" minOccurs="0" name="ListarContaResult" nillable="true" type="q2:ArrayOfConta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

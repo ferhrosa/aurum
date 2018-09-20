@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Aurum.Web.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Site.css" />
+</head>
+
+<script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery-1.7.1.min.js")%>"></script>
+<script type="text/javascript" src="<%= ResolveUrl("~/Scripts/Geral.js") %>"></script>
+<script type="text/javascript" src="<%= ResolveUrl("~/Scripts/Grid.js") %>"></script>
+
+<body>
+
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true" />
+
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">
+                        <a runat="server" href="~">
+                            <img runat="server" alt="Logo" src="~/Imagens/Aurum.png" />
+                            <span>Aurum</span>
+                        </a>
+                    </p>
+                </div>
+                <asp:Panel ID="pnlUsuario" runat="server" Visible="false" class="float-right">
+                    <p class="usuario">
+                        <asp:HyperLink ID="hlUsuario" runat="server" /><br />
+                        <asp:HyperLink runat="server" Text="Sair" NavigateUrl="~/login.aspx" />
+                    </p>
+                </asp:Panel>
+            </div>
+
+            <%--<asp:SiteMapDataSource ID="siteMap" runat="server" />
+            <asp:Menu runat="server" DataSourceID="siteMap" />--%>
+
+        </header>
+
+        <div id="body">
+            <section id="conteudo" class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="cphConteudo" runat="server" />
+            </section>
+        </div>
+
+    </form>
+</body>
+</html>
+
+<asp:contentplaceholder id="cphFinal" runat="server" />

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/" title="Início"  description="Página inicial">
+        <siteMapNode title="Movimentação"  description="">
+            <siteMapNode url="~/movimentacao/conferencia.aspx" title="Conferência"  description="" />
+            <siteMapNode url="~/movimentacao/resumo.aspx" title="Resumo"  description="" />
+            <siteMapNode url="~/movimentacao/movimentacao.aspx" title="Movimentações"  description="" />
+        </siteMapNode>
+        <siteMapNode title="Cadastros"  description="">
+            <siteMapNode url="~/cadastros/conta.aspx" title="Contas"  description="" />
+            <siteMapNode url="~/cadastros/cartao.aspx" title="Cartões"  description="" />
+            <siteMapNode url="~/cadastros/categoria.aspx" title="Categorias"  description="" />
+        </siteMapNode>
+    </siteMapNode>
+</siteMap>
