@@ -1,0 +1,42 @@
+md-card {
+  margin-bottom: 20px; }
+
+.extrato {
+  padding-right: 0; }
+  .extrato table {
+    width: 100%;
+    font-size: 0.9rem;
+    border-collapse: separate; }
+    .extrato table td {
+      margin: 0;
+      padding: 2px 5px;
+      text-align: left;
+      border-bottom: dotted 1px #ddd;
+      vertical-align: middle; }
+      .extrato table td:first-child {
+        padding-left: 0; }
+      .extrato table td:last-child {
+        padding-right: 0; }
+      .extrato table td.cabecalho {
+        font-weight: bold; }
+      .extrato table td.data {
+        font-size: 1.1em;
+        padding-top: 5px;
+        padding-bottom: 5px; }
+      .extrato table td.valor {
+        width: 1px;
+        white-space: nowrap;
+        padding-right: 0;
+        text-align: right; }
+        .extrato table td.valor.positivo {
+          color: #4CAF50; }
+        .extrato table td.valor.negativo {
+          color: #F44336; }
+      .extrato table td.titulo-saldo {
+        text-align: right;
+        font-style: italic;
+        color: #999; }
+      .extrato table td.botao-adicionar {
+        width: 1px;
+        vertical-align: top;
+        border-bottom: none; }

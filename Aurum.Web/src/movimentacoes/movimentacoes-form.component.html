@@ -1,0 +1,41 @@
+﻿<form (ngSubmit)="onSubmit()" #formMovimentacao="ngForm">
+    <md-spinner class="bloqueia-form" [class.exibe]="salvando"></md-spinner>
+
+    <h1 md-dialog-title>{{movimentacao.Id ? "Alterar" : "Adicionar" }} Movimentação</h1>
+
+    <md-dialog-content fxLayout="column">
+        <p>Id: {{movimentacao.Id}}</p>
+        <md-select name="categoria" [(ngModel)]="movimentacao.IdCategoria" placeholder="Categoria">
+            <md-option *ngFor="let categoria of categorias" [value]="categoria.Id">{{categoria.Nome}}</md-option>
+        </md-select>
+        <md-input-container>
+            <input mdInput name="descricao" [(ngModel)]="movimentacao.Descricao" placeholder="Descrição">
+        </md-input-container>
+        <md-select name="conta" [(ngModel)]="movimentacao.IdConta" placeholder="Conta">
+            <md-option value="{{null}}">Nenhuma</md-option>
+            <md-option *ngFor="let conta of contas" [value]="conta.Id">{{conta.Descricao}}</md-option>
+        </md-select>
+        <md-select name="cartao" [(ngModel)]="movimentacao.IdCartao" placeholder="Cartão">
+            <md-option value="{{null}}">Nenhum</md-option>
+            <md-option *ngFor="let cartao of cartoes" [value]="cartao.Id">{{cartao.Descricao}}</md-option>
+        </md-select>
+        <md-input-container>
+            <input mdInput type="date" name="data" [(ngModel)]="movimentacao.Data" placeholder="Data">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput type="number" name="valor" [(ngModel)]="movimentacao.Valor" placeholder="Valor">
+        </md-input-container>
+        <div>
+            Efetivada:
+            <md-slide-toggle name="efetivada" [checked]="movimentacao.Efetivada"></md-slide-toggle>
+        </div>
+        <md-input-container>
+            <textarea mdInput mdTextareaAutosize name="observacao" [(ngModel)]="movimentacao.Observacao" placeholder="Observação"></textarea>
+        </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <button md-button md-dialog-close>Cancelar</button>
+        <button md-raised-button type="submit" [disabled]="!formMovimentacao.form.valid">Salvar</button>
+    </md-dialog-actions>
+</form>

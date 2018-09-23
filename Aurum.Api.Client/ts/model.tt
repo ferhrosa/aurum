@@ -1,0 +1,17 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api.Client\bin\Debug\Aurum.Api.Client.dll" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Modelo\bin\Debug\Aurum.Modelo.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Aurum.Api.Client.ts" #>
+<#@ output extension=".ts" #>
+<#
+
+var assembly = Assembly.GetAssembly(typeof(Aurum.Modelo.Entidades.Conta));
+
+return TypeScriptUtil.GenerateFromAssembly(assembly);
+
+#>

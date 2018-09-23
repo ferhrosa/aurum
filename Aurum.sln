@@ -1,0 +1,153 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aurum.Database", "Aurum.Database\Aurum.Database.sqlproj", "{137187CD-D274-4CB0-AF81-731D81D09351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.AcessoDados", "Aurum.AcessoDados\Aurum.AcessoDados.csproj", "{B6950D45-0897-4C46-9963-841DBA15D3A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Banco de dados", "5 - Banco de dados", "{A9F6AFC3-C087-4481-B5D2-8DA475647BCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Front-end", "1 - Front-end", "{BC30A4FD-16A3-4B5E-ABDE-C68834E7EBB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Acesso a dados e serviços", "4 - Acesso a dados e serviços", "{C1DCE609-D2B8-4593-89E5-1DB5985E88E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domínio", "3 - Domínio", "{DEB979C2-51A6-4351-ADAF-EAB5F0DB2890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Api", "Aurum.Api\Aurum.Api.csproj", "{5F39F991-B93E-4F42-B4FF-24A5579490FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplicação", "2 - Aplicação", "{ACCD1D23-1148-4FEF-9044-EFD05EA7F8DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Dominio", "Aurum.Dominio\Aurum.Dominio.csproj", "{67B55265-0E8D-4A87-8844-04C125398D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Api.Client", "Aurum.Api.Client\Aurum.Api.Client.csproj", "{7346029A-F0A5-45D4-9A97-4C87B984E849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Windows", "Aurum.Windows\Aurum.Windows.csproj", "{CF93D120-EB5D-49A9-B8E2-7DC024673B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Modelo", "Aurum.Modelo\Aurum.Modelo.csproj", "{2A482823-0357-4E74-92C1-96D4DC12814C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Api.Client.Tests", "Aurum.Api.Client.Tests\Aurum.Api.Client.Tests.csproj", "{97DA5BD9-330D-4579-A6BF-A42EE9C7C424}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 - Testes", "9 - Testes", "{BF695C4F-351B-47FE-8D61-01219389547E}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Aurum.Web", "Aurum.Web\Aurum.Web.njsproj", "{59D04E68-12C1-4685-B976-1C11C611A9BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Utilitários", "0 - Utilitários", "{7D578A0B-C2FA-4921-A20C-DD7F367F66CE}"
+	ProjectSection(SolutionItems) = preProject
+		iniciar-api.bat = iniciar-api.bat
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurum.Api.SelfHost", "Aurum.Api.SelfHost\Aurum.Api.SelfHost.csproj", "{A171A6B3-7CCE-4462-9161-3A5D828DA98B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{137187CD-D274-4CB0-AF81-731D81D09351}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B6950D45-0897-4C46-9963-841DBA15D3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6950D45-0897-4C46-9963-841DBA15D3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6950D45-0897-4C46-9963-841DBA15D3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6950D45-0897-4C46-9963-841DBA15D3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F39F991-B93E-4F42-B4FF-24A5579490FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F39F991-B93E-4F42-B4FF-24A5579490FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F39F991-B93E-4F42-B4FF-24A5579490FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F39F991-B93E-4F42-B4FF-24A5579490FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B55265-0E8D-4A87-8844-04C125398D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B55265-0E8D-4A87-8844-04C125398D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B55265-0E8D-4A87-8844-04C125398D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B55265-0E8D-4A87-8844-04C125398D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7346029A-F0A5-45D4-9A97-4C87B984E849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7346029A-F0A5-45D4-9A97-4C87B984E849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7346029A-F0A5-45D4-9A97-4C87B984E849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7346029A-F0A5-45D4-9A97-4C87B984E849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF93D120-EB5D-49A9-B8E2-7DC024673B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF93D120-EB5D-49A9-B8E2-7DC024673B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF93D120-EB5D-49A9-B8E2-7DC024673B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF93D120-EB5D-49A9-B8E2-7DC024673B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A482823-0357-4E74-92C1-96D4DC12814C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A482823-0357-4E74-92C1-96D4DC12814C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A482823-0357-4E74-92C1-96D4DC12814C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A482823-0357-4E74-92C1-96D4DC12814C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97DA5BD9-330D-4579-A6BF-A42EE9C7C424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DA5BD9-330D-4579-A6BF-A42EE9C7C424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DA5BD9-330D-4579-A6BF-A42EE9C7C424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DA5BD9-330D-4579-A6BF-A42EE9C7C424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D04E68-12C1-4685-B976-1C11C611A9BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D04E68-12C1-4685-B976-1C11C611A9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D04E68-12C1-4685-B976-1C11C611A9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D04E68-12C1-4685-B976-1C11C611A9BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A171A6B3-7CCE-4462-9161-3A5D828DA98B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A171A6B3-7CCE-4462-9161-3A5D828DA98B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A171A6B3-7CCE-4462-9161-3A5D828DA98B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A171A6B3-7CCE-4462-9161-3A5D828DA98B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{137187CD-D274-4CB0-AF81-731D81D09351} = {A9F6AFC3-C087-4481-B5D2-8DA475647BCB}
+		{B6950D45-0897-4C46-9963-841DBA15D3A5} = {C1DCE609-D2B8-4593-89E5-1DB5985E88E8}
+		{5F39F991-B93E-4F42-B4FF-24A5579490FC} = {ACCD1D23-1148-4FEF-9044-EFD05EA7F8DC}
+		{67B55265-0E8D-4A87-8844-04C125398D30} = {DEB979C2-51A6-4351-ADAF-EAB5F0DB2890}
+		{7346029A-F0A5-45D4-9A97-4C87B984E849} = {ACCD1D23-1148-4FEF-9044-EFD05EA7F8DC}
+		{CF93D120-EB5D-49A9-B8E2-7DC024673B76} = {BC30A4FD-16A3-4B5E-ABDE-C68834E7EBB0}
+		{2A482823-0357-4E74-92C1-96D4DC12814C} = {DEB979C2-51A6-4351-ADAF-EAB5F0DB2890}
+		{97DA5BD9-330D-4579-A6BF-A42EE9C7C424} = {BF695C4F-351B-47FE-8D61-01219389547E}
+		{59D04E68-12C1-4685-B976-1C11C611A9BF} = {BC30A4FD-16A3-4B5E-ABDE-C68834E7EBB0}
+		{A171A6B3-7CCE-4462-9161-3A5D828DA98B} = {ACCD1D23-1148-4FEF-9044-EFD05EA7F8DC}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 11
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ferhrosa.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Aurum.Database\\Aurum.Database.sqlproj
+		SccProjectTopLevelParentUniqueName1 = Aurum.sln
+		SccProjectName1 = Aurum.Database
+		SccLocalPath1 = Aurum.Database
+		SccProjectUniqueName2 = Aurum.AcessoDados\\Aurum.AcessoDados.csproj
+		SccProjectTopLevelParentUniqueName2 = Aurum.sln
+		SccProjectName2 = Aurum.AcessoDados
+		SccLocalPath2 = Aurum.AcessoDados
+		SccProjectUniqueName3 = Aurum.Api\\Aurum.Api.csproj
+		SccProjectTopLevelParentUniqueName3 = Aurum.sln
+		SccProjectName3 = Aurum.Api
+		SccLocalPath3 = Aurum.Api
+		SccProjectUniqueName4 = Aurum.Dominio\\Aurum.Dominio.csproj
+		SccProjectTopLevelParentUniqueName4 = Aurum.sln
+		SccProjectName4 = Aurum.Dominio
+		SccLocalPath4 = Aurum.Dominio
+		SccProjectUniqueName5 = Aurum.Api.Client\\Aurum.Api.Client.csproj
+		SccProjectTopLevelParentUniqueName5 = Aurum.sln
+		SccProjectName5 = Aurum.Api.Client
+		SccLocalPath5 = Aurum.Api.Client
+		SccProjectUniqueName6 = Aurum.Windows\\Aurum.Windows.csproj
+		SccProjectTopLevelParentUniqueName6 = Aurum.sln
+		SccProjectName6 = Aurum.Windows
+		SccLocalPath6 = Aurum.Windows
+		SccProjectUniqueName7 = Aurum.Modelo\\Aurum.Modelo.csproj
+		SccProjectTopLevelParentUniqueName7 = Aurum.sln
+		SccProjectName7 = Aurum.Modelo
+		SccLocalPath7 = Aurum.Modelo
+		SccProjectUniqueName8 = Aurum.Api.Client.Tests\\Aurum.Api.Client.Tests.csproj
+		SccProjectTopLevelParentUniqueName8 = Aurum.sln
+		SccProjectName8 = Aurum.Api.Client.Tests
+		SccLocalPath8 = Aurum.Api.Client.Tests
+		SccProjectUniqueName9 = Aurum.Web\\Aurum.Web.njsproj
+		SccProjectTopLevelParentUniqueName9 = Aurum.sln
+		SccProjectName9 = Aurum.Web
+		SccLocalPath9 = Aurum.Web
+		SccProjectUniqueName10 = Aurum.Api.SelfHost\\Aurum.Api.SelfHost.csproj
+		SccProjectTopLevelParentUniqueName10 = Aurum.sln
+		SccProjectName10 = Aurum.Api.SelfHost
+		SccLocalPath10 = Aurum.Api.SelfHost
+	EndGlobalSection
+EndGlobal

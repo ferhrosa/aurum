@@ -1,0 +1,25 @@
+﻿
+
+<md-card>
+    <md-card-title>Contas</md-card-title>
+    <md-card-subtitle>Lista de Contas cadastradas</md-card-subtitle>
+
+    <md-card-content>
+        <md-nav-list *ngIf="lista && lista.length">
+            <a md-list-item *ngFor="let conta of lista" (click)="editar(conta)">
+                <md-icon md-list-icon>mode_edit</md-icon>
+                {{conta.Descricao}}
+                
+                <button md-icon-button class="excluir" (click)="excluir(conta); $event.stopPropagation()">
+                    <md-icon>delete_forever</md-icon>
+                </button>
+            </a>
+        </md-nav-list>
+    </md-card-content>
+</md-card>
+
+<span class="fab-container">
+    <button md-fab (click)="editar({})">
+        <md-icon>add</md-icon>
+    </button>
+</span>

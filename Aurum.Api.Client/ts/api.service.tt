@@ -1,0 +1,227 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api.Client\bin\Debug\Aurum.Api.Client.dll" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api\bin\Aurum.Api.dll" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Modelo\bin\Debug\Aurum.Modelo.dll" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api\bin\System.Web.Http.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Web.Http" #>
+<#@ import namespace="Aurum.Api" #>
+<#@ import namespace="Aurum.Api.Controllers" #>
+<#@ import namespace="Aurum.Api.Client.ts" #>
+<#@ output extension=".ts" #>
+/////////////////////////////////////////////
+// Código gerado por um template T4.       //
+// Não modifique diretamente este arquivo. //
+/////////////////////////////////////////////
+import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
+
+<#
+
+var assemblyModel = Assembly.GetAssembly(typeof(Aurum.Modelo.Entidades.Conta));
+var classes = assemblyModel.ExportedTypes;
+
+var listaImports = new List<string>();
+
+foreach (var classe in classes)
+{
+    listaImports.Add(classe.Name);
+}
+
+var imports = String.Join(", ", listaImports);
+#>
+import { <#= imports #> } from './model';
+
+<#
+var baseUrl = "http://localhost:33823/";
+
+//var configFileMap = new ExeConfigurationFileMap(this.Host.ResolvePath(@"..\app.config"));
+//configFileMap.ExeConfigFilename = this.Host.ResolvePath(@"..\app.config");
+//var appConfig = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+//var baseUrl = appConfig.AppSettings["Aurum.Api.Client.BaseUrl"];
+
+//var baseUrl = ConfigurationManager.AppSettings["Aurum.Api.Client.BaseUrl"];
+
+if (!baseUrl.EndsWith("/")) { baseUrl += "/"; }
+
+#>
+const baseUrl = '<#= baseUrl #>';
+const headers = new Headers({ 'Content-Type': 'application/json' });
+
+<#
+
+var assembly = Assembly.GetAssembly(typeof(Aurum.Api.WebApiApplication));
+var controllers = assembly.DefinedTypes.Where(t => t.IsSubclassOf(typeof(Aurum.Api.Controllers.BaseController)));
+
+var config = new HttpConfiguration();
+WebApiConfig.Register(config);
+
+foreach (var controller in controllers)
+{
+    var nomeController = controller.Name;
+    if (nomeController.EndsWith("Controller")) { nomeController = nomeController.Remove(nomeController.Length - 10); }
+#>
+
+@Injectable()
+export class <#= nomeController #>ApiService {
+
+    constructor(private http: Http) { }
+<#
+
+    var metodos = controller.DeclaredMethods;
+
+    foreach (var metodo in metodos)
+    {
+        var nomeMetodo = metodo.Name[0].ToString().ToLower() + metodo.Name.Substring(1);
+        
+        var tipoRetorno = metodo.ReturnType;
+
+        var verbo = "";
+
+        foreach (var atributo in metodo.CustomAttributes)
+        {
+            switch (atributo.AttributeType.Name)
+            {
+                case "HttpGetAttribute":
+                    verbo = "get";
+                    break;
+                case "HttpPostAttribute":
+                    verbo = "post";
+                    break;
+                case "HttpPutAttribute":
+                    verbo = "put";
+                    break;
+                case "HttpDeleteAttribute":
+                    verbo = "delete";
+                    break;
+                case "ResponseTypeAttribute":
+                    tipoRetorno = (Type)atributo.ConstructorArguments.First().Value;
+                    break;
+            }
+        }
+
+        var tipoRetornoFormatado = FormatarType(tipoRetorno);
+        if (tipoRetorno.Name == "IHttpActionResult") { tipoRetornoFormatado = "void"; }
+
+        var tipoMetodo = (tipoRetornoFormatado == "void" ? "Task" : $"Task<{tipoRetornoFormatado}>");
+
+        var parametros = String.Join(", ", metodo.GetParameters().Select(p => $"{p.Name}: {FormatarType(p.ParameterType)}"));
+
+        var parametroBody = metodo.GetParameters().FirstOrDefault(p => p.GetCustomAttribute<FromBodyAttribute>() != null);
+
+        var content = String.Empty;
+        var metodoHttp = verbo;
+        
+        if (parametroBody != null)
+        {
+            content = $", JSON.stringify({parametroBody.Name}), {{ headers }}";
+        }
+
+        var url = FormatarUrl(config.Routes[WebApiConfig.RotaPadrao].RouteTemplate, controller, metodo.GetParameters());
+
+#>
+
+    <#= nomeMetodo #>(<#= parametros #>): Promise<<#= tipoRetornoFormatado #>> {
+        const url = `${baseUrl}<#= url #>`
+        return this.http
+            .<#= metodoHttp #>(url<#= content #>)
+            .toPromise()
+<#
+        if (tipoRetornoFormatado == "void")
+        {
+#>
+            .then(() => null)
+<#
+        }
+        else
+        {
+#>
+            .then(response => response.json() as <#= tipoRetornoFormatado #>)
+<#
+        }
+#>
+            .catch(this.handleError);
+    }
+<#
+    } //# foreach metodo
+
+#>
+
+    private handleError(error: any): Promise<any> {
+        console.error('Ocorreu um erro', error);
+        return Promise.reject(error.message || error);
+    }
+
+} // class <#= nomeController #>ApiService
+
+<#
+
+} //# foreach controller
+
+
+string FormatarType(Type type)
+{
+	if (type.IsGenericType && type.Name.StartsWith("IEnumerable"))
+	{
+		return ConverterType(type.GenericTypeArguments[0]) + "[]";
+	}
+	else
+	{
+		return ConverterType(type);
+	}
+}
+	
+string ConverterType(Type type)
+{
+    return TypeScriptUtil.ConvertTypeName(type);
+
+	//switch (type.Name)
+	//{
+	//	case "String":
+	//		return "string";
+	//	case "Byte":
+	//	case "Int16":
+	//	case "Int32":
+	//	case "Int64":
+	//		return "number";
+	//	default:
+	//		return type.Name;
+	//}
+}
+
+
+
+string FormatarUrl(string rota, Type controller, ParameterInfo[] parametros)
+{
+    var url = new StringBuilder();
+
+    var nomeController = controller.Name;
+    if (nomeController.EndsWith("Controller"))
+    {
+        nomeController = nomeController.Substring(0, nomeController.Length - "Controller".Length);
+    }
+
+    foreach (var parte in rota.Split('/'))
+    {
+        if (parte == "{controller}")
+        {
+            url.Append(nomeController.ToLower());
+        }
+        else if (parametros.Any(p => parte == $"{{{p.Name}}}"))
+        {
+            url.Append($"/${parte}");
+        }
+    }
+
+    return url.ToString();
+}
+
+#>

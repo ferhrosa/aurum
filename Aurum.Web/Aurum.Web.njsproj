@@ -1,0 +1,189 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Aurum.Web</Name>
+    <RootNamespace>Aurum.Web</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>59d04e68-12c1-4685-b976-1c11c611a9bf</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <StartWebBrowser>True</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ProjectFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>False</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\api.service.ts" />
+    <TypeScriptCompile Include="src\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app.component.ts" />
+    <TypeScriptCompile Include="src\app.module.ts" />
+    <TypeScriptCompile Include="src\cadastros\cartoes.component.ts" />
+    <TypeScriptCompile Include="src\cadastros\contas.component.ts" />
+    <TypeScriptCompile Include="src\cadastros\categorias.component.ts" />
+    <TypeScriptCompile Include="src\enums.ts" />
+    <TypeScriptCompile Include="src\model.ts" />
+    <TypeScriptCompile Include="src\movimentacoes\movimentacoes-form.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\resumo.component.ts" />
+    <TypeScriptCompile Include="tutorial\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="tutorial\app\app.component.ts" />
+    <TypeScriptCompile Include="tutorial\app\app.module.ts" />
+    <TypeScriptCompile Include="tutorial\app\dashboard.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="tutorial\app\hero-detail.component.ts" />
+    <TypeScriptCompile Include="tutorial\app\hero-search.service.ts" />
+    <TypeScriptCompile Include="tutorial\app\hero.service.ts" />
+    <TypeScriptCompile Include="tutorial\app\hero.ts" />
+    <TypeScriptCompile Include="tutorial\app\heroes.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="tutorial\app\in-memory-data.service.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="bs-config.ts" />
+    <TypeScriptCompile Include="tutorial\app\hero-search.component.ts" />
+    <TypeScriptCompile Include="server.js" />
+    <Content Include="src\app.component.html" />
+    <Content Include="src\cadastros\cartoes-form.component.html" />
+    <Content Include="src\cadastros\contas-form.component.html" />
+    <Content Include="src\cadastros\categorias-form.component.html" />
+    <Content Include="src\cadastros\cartoes.component.html" />
+    <Content Include="src\cadastros\contas.component.html" />
+    <Content Include="src\cadastros\categorias.component.html" />
+    <Content Include="src\css\tema.scss" />
+    <Content Include="src\css\_tema-padrao.scss" />
+    <Content Include="src\movimentacoes\movimentacoes-form.component.html" />
+    <Content Include="src\resumo.component.html" />
+    <Content Include="src\resumo.component.scss" />
+    <Content Include="README.md" />
+    <Content Include="src\css\styles.scss" />
+    <Content Include="tutorial\app\app.component.css" />
+    <Content Include="tutorial\app\app.component.min.css">
+      <SubType>Content</SubType>
+      <DependentUpon>tutorial\app\app.component.css</DependentUpon>
+    </Content>
+    <Content Include="src\app.component.scss" />
+    <Content Include="tutorial\app\dashboard.component.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="tutorial\app\hero-detail.component.css" />
+    <Content Include="tutorial\app\hero-detail.component.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="tutorial\app\hero-search.component.css" />
+    <Content Include="tutorial\app\hero-search.component.html" />
+    <Content Include="tutorial\app\heroes.component.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="tutorial\app\heroes.component.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="index.html" />
+    <Content Include="package.json" />
+    <Content Include="tutorial\styles.css" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tutorial\index.html" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config" />
+    <Content Include="bin\ChangeConfig.ps1" />
+    <Content Include="bin\download.ps1" />
+    <Content Include="bin\setup_web.cmd" />
+    <Content Include="bin\node.cmd" />
+    <TypeScriptCompile Include="tutorial\app\main.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\css\" />
+    <Folder Include="src\cadastros\" />
+    <Folder Include="src\movimentacoes\" />
+    <Folder Include="bin\" />
+    <Folder Include="src\" />
+    <Folder Include="tutorial\" />
+    <Folder Include="tutorial\app\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gulpfile.js" />
+    <Compile Include="systemjs.config.extras.js" />
+    <Compile Include="systemjs.config.js" />
+    <Compile Include="tutorial\systemjs.config.extras.js" />
+    <Compile Include="tutorial\systemjs.config.js" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

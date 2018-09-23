@@ -1,0 +1,22 @@
+﻿<form (ngSubmit)="onSubmit()" #formCartoes="ngForm">
+    <md-spinner class="bloqueia-form" [class.exibe]="salvando"></md-spinner>
+
+    <h1 md-dialog-title>{{cartao.Id ? "Alterar" : "Adicionar" }} Cartão</h1>
+
+    <md-dialog-content fxLayout="column">
+        <md-input-container>
+            <input mdInput name="descricao" [(ngModel)]="cartao.Descricao"
+                placeholder="Descrição" required maxlength="30">
+        </md-input-container>
+
+        <md-select name="idConta" [(ngModel)]="cartao.IdConta" placeholder="Conta">
+            <md-option value="{{null}}">Nenhuma</md-option>
+            <md-option *ngFor="let conta of contas" [value]="conta.Id">{{conta.Descricao}}</md-option>
+        </md-select>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <button md-button md-dialog-close>Cancelar</button>
+        <button md-raised-button type="submit" [disabled]="!formCartoes.form.valid">Salvar</button>
+    </md-dialog-actions>
+</form>

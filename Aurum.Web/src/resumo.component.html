@@ -1,0 +1,90 @@
+﻿
+<!--<h2>Resumo</h2>-->
+
+<!--<div fxLayout="row">
+    <md-card fxFlex="50">
+        <md-card-content>
+            <div>conta 1</div>
+            <div>conta 2</div>
+            <div>conta 3</div>
+        </md-card-content>
+    </md-card>
+    <md-card fxFlex="40" fxFlexOffset="10">
+        <md-card-content>
+            <div>filtro de</div>
+            <div>filtro para</div>
+        </md-card-content>
+    </md-card>
+</div>-->
+
+<!--<md-card>-->
+<md-card class="extrato">
+    <!--<md-card-content class="extrato">-->
+        <table>
+            <tbody>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">01/05/2017</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 420,00</td>
+                    <td rowspan="4" class="botao-adicionar">
+                        <button md-icon-button aria-label="Adicionar" (click)="adicionar(123)">
+                            <md-icon>add_box</md-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Combustível</td>
+                    <td class="valor negativo">R$ -70,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Pão</td>
+                    <td class="valor negativo">R$ -4,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Mercado</td>
+                    <td class="valor negativo">R$ -50,00</td>
+                </tr>
+                <tr class="inicio-dia">
+                    <td class="cabecalho data">02/05/2017</td>
+                    <td class="titulo-saldo">Saldo inicial</td>
+                    <td class="cabecalho valor positivo">R$ 316,00</td>
+                    <td rowspan="3" class="botao-adicionar">
+                        <button md-icon-button aria-label="Adicionar" (click)="adicionar()">
+                            <md-icon>add_box</md-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boleto de alguma coisa</td>
+                    <td class="valor negativo">R$ -200,00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Recebemos alguma coisa de alguém</td>
+                    <td class="valor positivo">R$ 120,00</td>
+                </tr>
+                <tr class="final-dia">
+                    <td colspan="2" class="titulo-saldo">Saldo final</td>
+                    <td class="cabecalho valor positivo">R$ 236,00</td>
+                </tr>
+            </tbody>
+        </table>
+    <!--</md-card-content>-->
+</md-card>
+
+
+<md-card>
+
+    <md-list>
+        <md-list-item *ngFor="let item of lista">
+            {{item.Id}} - {{item.Descricao}}
+        </md-list-item>
+    </md-list>
+
+</md-card>
+
+
+<span class="fab-container">
+    <button md-fab (click)="adicionar()">
+        <md-icon>add</md-icon>
+    </button>
+</span>

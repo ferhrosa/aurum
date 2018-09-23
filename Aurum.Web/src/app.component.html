@@ -1,0 +1,72 @@
+﻿<div class="app-container" fxLayout="column">
+
+    <md-toolbar color="primary" class="mat-elevation-z6">
+        <button md-icon-button (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+        </button>
+
+        Aurum
+
+    </md-toolbar>
+
+    <md-sidenav-container fxFlex>
+
+        <md-sidenav #sidenav mode="side" opened="true" class="app-sidenav mat-elevation-z5">
+            <!--<md-content>-->
+            <!--<a routerLink="/resumo">Resumo</a>-->
+
+            <md-nav-list>
+
+                <!--<md-list-item hide-gt-md>
+                    <h1 class="md-headline">Aurum</h1>
+                </md-list-item>
+                <md-divider hide-gt-md></md-divider>-->
+
+                <h3 md-subheader class="md-no-sticky">Movimentações</h3>
+
+                <a md-list-item routerLink="/resumo">
+                    <md-icon class="icone-resumo">dashboard</md-icon>
+                    <p>Resumo</p>
+                </a>
+
+                <a md-list-item routerLink="/despesas">
+                    <md-icon class="icone-despesa">money_off</md-icon>
+                    <p>Despesas</p>
+                </a>
+
+                <a md-list-item routerLink="/receitas">
+                    <md-icon class="icone-receita">attach_money</md-icon>
+                    <p>Receitas</p>
+                </a>
+
+                <md-divider></md-divider>
+
+                <h3 md-subheader class="md-no-sticky">Cadastros</h3>
+
+                <a md-list-item routerLink="/cadastros/categorias">
+                    <md-icon>view_list</md-icon>
+                    <p>Categorias</p>
+                </a>
+
+                <a md-list-item routerLink="/cadastros/contas">
+                    <md-icon>account_balance_wallet</md-icon>
+                    <p>Contas</p>
+                </a>
+
+                <a md-list-item routerLink="/cadastros/cartoes">
+                    <md-icon>credit_card</md-icon>
+                    <p>Cartões</p>
+                </a>
+
+            </md-nav-list>
+
+            <!--</md-content>-->
+        </md-sidenav>
+
+        <div class="app-content">
+            <router-outlet></router-outlet>
+        </div>
+
+    </md-sidenav-container>
+
+</div>

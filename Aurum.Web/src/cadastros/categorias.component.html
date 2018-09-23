@@ -1,0 +1,24 @@
+﻿
+<md-card>
+    <md-card-title>Categorias</md-card-title>
+    <md-card-subtitle>Lista de Categorias cadastradas</md-card-subtitle>
+
+    <md-card-content>
+        <md-nav-list *ngIf="lista && lista.length">
+            <a md-list-item *ngFor="let categoria of lista" (click)="editar(categoria)">
+                <md-icon md-list-icon>mode_edit</md-icon>
+                {{categoria.Nome}}
+                
+                <button md-icon-button class="excluir" (click)="excluir(categoria); $event.stopPropagation()">
+                    <md-icon>delete_forever</md-icon>
+                </button>
+            </a>
+        </md-nav-list>
+    </md-card-content>
+</md-card>
+
+<span class="fab-container">
+    <button md-fab (click)="adicionar()">
+        <md-icon>add</md-icon>
+    </button>
+</span>

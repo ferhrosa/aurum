@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AurumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cartao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdConta" Type="int" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="tinyint" Nullable="false" />
+          <Property Name="AgenciaConta" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Movimentacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="IdConta" Type="int" />
+          <Property Name="IdCartao" Type="int" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+          <Property Name="Efetivada" Type="bit" Nullable="false" />
+          <Property Name="DataHoraInclusao" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="IdMovimentacaoPrimeiraParcela" Type="uniqueidentifier" />
+          <Property Name="NumeroParcela" Type="smallint" />
+          <Property Name="TotalParcelas" Type="smallint" />
+          <Property Name="Observacao" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Cartao_Conta">
+          <End Role="Conta" Type="Self.Conta" Multiplicity="0..1" />
+          <End Role="Cartao" Type="Self.Cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cartao">
+              <PropertyRef Name="IdConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Cartao">
+          <End Role="Cartao" Type="Self.Cartao" Multiplicity="0..1" />
+          <End Role="Movimentacao" Type="Self.Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Movimentacao" Type="Self.Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Conta">
+          <End Role="Conta" Type="Self.Conta" Multiplicity="0..1" />
+          <End Role="Movimentacao" Type="Self.Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_MovimentacaoPrimeiraParcela">
+          <End Role="Movimentacao" Type="Self.Movimentacao" Multiplicity="0..1" />
+          <End Role="Movimentacao1" Type="Self.Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimentacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao1">
+              <PropertyRef Name="IdMovimentacaoPrimeiraParcela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AurumModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cartao" EntityType="Self.Cartao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conta" EntityType="Self.Conta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimentacao" EntityType="Self.Movimentacao" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cartao_Conta" Association="Self.FK_Cartao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Cartao" EntitySet="Cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Cartao" Association="Self.FK_Movimentacao_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Categoria" Association="Self.FK_Movimentacao_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Conta" Association="Self.FK_Movimentacao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_MovimentacaoPrimeiraParcela" Association="Self.FK_Movimentacao_MovimentacaoPrimeiraParcela">
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+            <End Role="Movimentacao1" EntitySet="Movimentacao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AurumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AurumEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="C__RefactorLog" EntityType="AurumModel.C__RefactorLog" />
+          <EntitySet Name="Cartao" EntityType="AurumModel.Cartao" />
+          <EntitySet Name="Categoria" EntityType="AurumModel.Categoria" />
+          <EntitySet Name="Conta" EntityType="AurumModel.Conta" />
+          <EntitySet Name="Movimentacao" EntityType="AurumModel.Movimentacao" />
+          <AssociationSet Name="FK_Cartao_Conta" Association="AurumModel.FK_Cartao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Cartao" EntitySet="Cartao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Cartao" Association="AurumModel.FK_Movimentacao_Cartao">
+            <End Role="Cartao" EntitySet="Cartao" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Categoria" Association="AurumModel.FK_Movimentacao_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_Conta" Association="AurumModel.FK_Movimentacao_Conta">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movimentacao_MovimentacaoPrimeiraParcela" Association="AurumModel.FK_Movimentacao_MovimentacaoPrimeiraParcela">
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+            <End Role="Movimentacao1" EntitySet="Movimentacao" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cartao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdConta" Type="Int32" />
+          <NavigationProperty Name="Conta" Relationship="AurumModel.FK_Cartao_Conta" FromRole="Cartao" ToRole="Conta" />
+          <NavigationProperty Name="Movimentacoes" Relationship="AurumModel.FK_Movimentacao_Cartao" FromRole="Cartao" ToRole="Movimentacao" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movimentacoes" Relationship="AurumModel.FK_Movimentacao_Categoria" FromRole="Categoria" ToRole="Movimentacao" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="Byte" Nullable="false" />
+          <Property Name="AgenciaConta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cartoes" Relationship="AurumModel.FK_Cartao_Conta" FromRole="Conta" ToRole="Cartao" />
+          <NavigationProperty Name="Movimentacoes" Relationship="AurumModel.FK_Movimentacao_Conta" FromRole="Conta" ToRole="Movimentacao" />
+        </EntityType>
+        <EntityType Name="Movimentacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="IdConta" Type="Int32" />
+          <Property Name="IdCartao" Type="Int32" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Efetivada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cartao" Relationship="AurumModel.FK_Movimentacao_Cartao" FromRole="Movimentacao" ToRole="Cartao" />
+          <NavigationProperty Name="Categoria" Relationship="AurumModel.FK_Movimentacao_Categoria" FromRole="Movimentacao" ToRole="Categoria" />
+          <NavigationProperty Name="Conta" Relationship="AurumModel.FK_Movimentacao_Conta" FromRole="Movimentacao" ToRole="Conta" />
+          <Property Name="DataHoraInclusao" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IdMovimentacaoPrimeiraParcela" Type="Guid" />
+          <Property Name="NumeroParcela" Type="Int16" />
+          <Property Name="TotalParcelas" Type="Int16" />
+          <Property Name="Observacao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MovimentacoesProximasParcelas" Relationship="AurumModel.FK_Movimentacao_MovimentacaoPrimeiraParcela" FromRole="Movimentacao" ToRole="Movimentacao1" />
+          <NavigationProperty Name="MovimentacaoPrimeiraParcela" Relationship="AurumModel.FK_Movimentacao_MovimentacaoPrimeiraParcela" FromRole="Movimentacao1" ToRole="Movimentacao" />
+        </EntityType>
+        <Association Name="FK_Cartao_Conta">
+          <End Type="AurumModel.Conta" Role="Conta" Multiplicity="0..1" />
+          <End Type="AurumModel.Cartao" Role="Cartao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cartao">
+              <PropertyRef Name="IdConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Cartao">
+          <End Type="AurumModel.Cartao" Role="Cartao" Multiplicity="0..1" />
+          <End Type="AurumModel.Movimentacao" Role="Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cartao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdCartao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Categoria">
+          <End Type="AurumModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="AurumModel.Movimentacao" Role="Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_Conta">
+          <End Type="AurumModel.Conta" Role="Conta" Multiplicity="0..1" />
+          <End Type="AurumModel.Movimentacao" Role="Movimentacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao">
+              <PropertyRef Name="IdConta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movimentacao_MovimentacaoPrimeiraParcela">
+          <End Type="AurumModel.Movimentacao" Role="Movimentacao" Multiplicity="0..1" />
+          <End Type="AurumModel.Movimentacao" Role="Movimentacao1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movimentacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movimentacao1">
+              <PropertyRef Name="IdMovimentacaoPrimeiraParcela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AurumModelStoreContainer" CdmEntityContainer="AurumEntities" >
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="AurumModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cartao">
+            <EntityTypeMapping TypeName="AurumModel.Cartao">
+              <MappingFragment StoreEntitySet="Cartao">
+                <ScalarProperty Name="IdConta" ColumnName="IdConta" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="AurumModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conta">
+            <EntityTypeMapping TypeName="AurumModel.Conta">
+              <MappingFragment StoreEntitySet="Conta">
+                <ScalarProperty Name="AgenciaConta" ColumnName="AgenciaConta" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimentacao">
+            <EntityTypeMapping TypeName="AurumModel.Movimentacao">
+              <MappingFragment StoreEntitySet="Movimentacao">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="TotalParcelas" ColumnName="TotalParcelas" />
+                <ScalarProperty Name="NumeroParcela" ColumnName="NumeroParcela" />
+                <ScalarProperty Name="IdMovimentacaoPrimeiraParcela" ColumnName="IdMovimentacaoPrimeiraParcela" />
+                <ScalarProperty Name="DataHoraInclusao" ColumnName="DataHoraInclusao" />
+                <ScalarProperty Name="Efetivada" ColumnName="Efetivada" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IdCartao" ColumnName="IdCartao" />
+                <ScalarProperty Name="IdConta" ColumnName="IdConta" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

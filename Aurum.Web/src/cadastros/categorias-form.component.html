@@ -1,0 +1,17 @@
+﻿<form (ngSubmit)="onSubmit()" #formCategorias="ngForm">
+    <md-spinner class="bloqueia-form" [class.exibe]="salvando"></md-spinner>
+
+    <h1 md-dialog-title>{{categoria.Id ? "Alterar" : "Adicionar" }} Categoria</h1>
+
+    <md-dialog-content>
+        <md-input-container>
+            <input mdInput name="nome" [(ngModel)]="categoria.Nome"
+                placeholder="Nome" required maxlength="30">
+        </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <button md-button md-dialog-close>Cancelar</button>
+        <button md-raised-button type="submit" [disabled]="!formCategorias.form.valid">Salvar</button>
+    </md-dialog-actions>
+</form>

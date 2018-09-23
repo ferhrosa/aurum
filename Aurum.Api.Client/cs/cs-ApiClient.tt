@@ -1,0 +1,198 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api\bin\Aurum.Api.dll" #>
+<#@ assembly name="$(SolutionDir)\Aurum.Api\bin\System.Web.Http.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Web.Http" #>
+<#@ import namespace="Aurum.Api" #>
+<#@ import namespace="Aurum.Api.Controllers" #>
+<#@ output extension=".cs" #>
+/////////////////////////////////////////////
+// Código gerado por um template T4.       //
+// Não modifique diretamente este arquivo. //
+/////////////////////////////////////////////
+using System;
+using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+namespace Aurum.Api.Client
+{
+    public static class ApiClient
+    {
+        private static HttpClient httpClient = new HttpClient();
+
+        public readonly static string baseUrl;
+
+        static ApiClient()
+        {
+            baseUrl = ConfigurationManager.AppSettings["Aurum.Api.Client.BaseUrl"];
+            if (!baseUrl.EndsWith("/")) { baseUrl += "/"; }
+
+            httpClient.BaseAddress = new Uri(baseUrl);
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+<#
+
+var assembly = Assembly.GetAssembly(typeof(Aurum.Api.WebApiApplication));
+var controllers = assembly.DefinedTypes.Where(t => t.IsSubclassOf(typeof(Aurum.Api.Controllers.BaseController)));
+
+var config = new HttpConfiguration();
+WebApiConfig.Register(config);
+
+foreach (var controller in controllers)
+{
+    var nomeController = controller.Name;
+    if (nomeController.EndsWith("Controller")) { nomeController = nomeController.Remove(nomeController.Length - 10); }
+#>
+
+        public static class <#= nomeController #>
+        {
+<#
+
+    var metodos = controller.DeclaredMethods;
+
+    foreach (var metodo in metodos)
+    {
+        var tipoRetorno = metodo.ReturnType;
+
+        var verbo = "";
+
+        foreach (var atributo in metodo.CustomAttributes)
+        {
+            switch (atributo.AttributeType.Name)
+            {
+                case "HttpGetAttribute":
+                    verbo = "Get";
+                    break;
+                case "HttpPostAttribute":
+                    verbo = "Post";
+                    break;
+                case "HttpPutAttribute":
+                    verbo = "Put";
+                    break;
+                case "HttpDeleteAttribute":
+                    verbo = "Delete";
+                    break;
+                case "ResponseTypeAttribute":
+                    tipoRetorno = (Type)atributo.ConstructorArguments.First().Value;
+                    break;
+            }
+        }
+
+        var tipoRetornoFormatado = FormatarType(tipoRetorno);
+        if (tipoRetorno.Name == "IHttpActionResult") { tipoRetornoFormatado = "void"; }
+
+        var tipoMetodo = (tipoRetornoFormatado == "void" ? "Task" : $"Task<{tipoRetornoFormatado}>");
+
+        var parametros = String.Join(", ", metodo.GetParameters().Select(p => $"{FormatarType(p.ParameterType)} {p.Name}"));
+
+        var parametroBody = metodo.GetParameters().FirstOrDefault(p => p.GetCustomAttribute<FromBodyAttribute>() != null);
+
+        var content = String.Empty;
+        var metodoHttp = verbo;
+        
+        if (parametroBody != null)
+        {
+            content = $", {parametroBody.Name}";
+            metodoHttp += "AsJson";
+        }
+
+        var url = FormatarUrl(config.Routes[WebApiConfig.RotaPadrao].RouteTemplate, controller, metodo.GetParameters());
+
+#>
+
+            public static async <#= tipoMetodo #> <#= metodo.Name #>Async(<#= parametros #>)
+            {
+<#
+        if (tipoMetodo == "Task")
+        {
+#>
+                await httpClient.<#= metodoHttp #>Async(<#= url #><#= content #>);
+<#
+        }
+        else
+        {
+#>
+                <#= tipoRetornoFormatado #> resultado = null;
+
+                var response = await httpClient.<#= metodoHttp #>Async(<#= url #><#= content #>);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    resultado = await response.Content.ReadAsAsync<<#= tipoRetornoFormatado #>>();
+                }
+
+                return resultado;
+<#
+        }
+#>
+            }
+<#
+    } // # foreach metodo
+#>
+
+        } // class <#= nomeController #>
+
+<#
+}
+
+#>
+    } // class ApiClient
+} // namespace
+
+<#
+
+string FormatarType(Type type)
+{
+    if (type.IsGenericType)
+    {
+        var sb = new StringBuilder();
+        var tipos = type.ToString().Split('`');
+
+        sb.Append(tipos[0]);
+        sb.Append($"<{String.Join(", ", type.GenericTypeArguments.Select(t => FormatarType(t)))}>");
+
+        return sb.ToString();
+    }
+    else
+    {
+        return type.FullName;
+    }
+}
+
+
+string FormatarUrl(string rota, Type controller, ParameterInfo[] parametros)
+{
+    var url = new StringBuilder();
+    url.Append("$\"");
+
+    var nomeController = controller.Name;
+    if (nomeController.EndsWith("Controller"))
+    {
+        nomeController = nomeController.Substring(0, nomeController.Length - "Controller".Length);
+    }
+
+    foreach (var parte in rota.Split('/'))
+    {
+        if (parte == "{controller}")
+        {
+            url.Append(nomeController.ToLower());
+        }
+        else if (parametros.Any(p => parte == $"{{{p.Name}}}"))
+        {
+            url.Append($"/{parte}");
+        }
+    }
+
+    url.Append('\"');
+    return url.ToString();
+}
+
+#>
