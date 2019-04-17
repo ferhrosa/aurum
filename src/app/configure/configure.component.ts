@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Configurations } from '../shared/configurations.service';
-import { FirebaseAppConfig } from 'angularfire2';
+import { FirebaseAppConfig } from '@angular/fire';
 import { Router } from '@angular/router';
 
 @Component({

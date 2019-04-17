@@ -8,6 +8,7 @@ import { AurumModule } from './aurum/aurum.module';
 
 import { AppComponent } from './app.component';
 import { ConfigureComponent } from './configure/configure.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ConfigureComponent } from './configure/configure.component';
     AppRoutingModule,
     FormsModule,
     AurumModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
