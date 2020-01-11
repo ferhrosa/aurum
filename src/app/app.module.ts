@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +47,7 @@ import { ResumoComponent } from './resumo/resumo.component';
     CommonModule,
     RouterModule,
     AngularFireModule.initializeApp(tokens.firebase),
-    AngularFireDatabaseModule,
+    AngularFireAuthModule, AngularFireDatabaseModule,
     MatSidenavModule, MatListModule, MatTabsModule, MatTableModule,
     MatButtonModule, MatCardModule, MatIconModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatSelectModule,

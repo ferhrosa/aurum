@@ -1,2 +1,6 @@
+<div *ngIf="isAuthenticated === false" class="sign-in">
+    <h1 matLine>AURUM</h1>
+    <button mat-raised-button color="primary" type="button" (click)="logIn()">Sign in</button>
+</div>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="isAuthenticated"></router-outlet>
