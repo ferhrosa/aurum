@@ -1,27 +1,59 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+
+import { tokens } from 'src/environments/tokens';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AurumModule } from './aurum/aurum.module';
-
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { IndexComponent } from './index/index.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ResumoComponent } from './resumo/resumo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
+    LayoutComponent,
+    ResumoComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    AurumModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    RouterModule,
+    AngularFireModule.initializeApp(tokens.firebase),
+    AngularFireDatabaseModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatTableModule,
+    MatButtonModule, MatCardModule, MatIconModule, MatInputModule,
+    MatDatepickerModule, MatNativeDateModule, MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IndexComponent } from './aurum/index/index.component';
-import { LayoutComponent } from './aurum/layout/layout.component';
-import { ResumoComponent } from './aurum/resumo/resumo.component';
+import { IndexComponent } from './index/index.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ResumoComponent } from './resumo/resumo.component';
 
 
 const routes: Routes = [
