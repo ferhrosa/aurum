@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResumoComponent implements OnInit {
 
+  lista = [];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  adicionar(dia?: any) {
+    // TODO
   }
 
 }
