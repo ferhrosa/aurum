@@ -1,7 +1,37 @@
+@import 'shared/tema';
+
 .sign-in {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+}
+
+//$sidenav-border: solid 1px #ccc;
+
+mat-sidenav-container mat-sidenav {
+    //border-right: $sidenav-border;
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    // h3 {
+    //     margin: 20px 0 10px 0;
+    //     padding: 0 10px;
+    //     font-size: 12px;
+    //     text-transform: uppercase;
+    //     color: #999;
+    // }
+
+    .icone-resumo { color: $tema-cor-resumo; }
+    .icone-despesa { color: $tema-cor-despesa; }
+    .icone-receita { color: $tema-cor-receita; }
+
+}
+
+div.main {
+    display: block;
+    padding: 20px;
 }

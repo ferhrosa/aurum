@@ -28,7 +28,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IndexComponent } from './index/index.component';
-import { LayoutComponent } from './layout/layout.component';
 import { ResumoComponent } from './resumo/resumo.component';
 
 
@@ -36,7 +35,6 @@ import { ResumoComponent } from './resumo/resumo.component';
   declarations: [
     AppComponent,
     IndexComponent,
-    LayoutComponent,
     ResumoComponent,
   ],
   imports: [
