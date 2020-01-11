@@ -44,3 +44,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Firebase CLI
+/.firebase
+.firebaserc
+
+# Custom / Project
+src/environments/tokens.ts

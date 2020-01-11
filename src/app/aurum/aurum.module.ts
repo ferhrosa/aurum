@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { Configurations } from '../shared/configurations.service';
+import { tokens } from 'src/environments/tokens';
 
 import { IndexComponent } from './index/index.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -30,7 +30,7 @@ import { ResumoComponent } from './resumo/resumo.component';
     CommonModule,
     RouterModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(Configurations.getFirebaseAppConfig()),
+    AngularFireModule.initializeApp(tokens.firebase),
     AngularFireDatabaseModule,
     MatSidenavModule, MatListModule, MatTabsModule, MatTableModule,
     MatButtonModule, MatCardModule, MatIconModule, MatInputModule,

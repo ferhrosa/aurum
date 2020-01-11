@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ConfigureComponent } from './configure/configure.component';
+
 import { IndexComponent } from './aurum/index/index.component';
 import { LayoutComponent } from './aurum/layout/layout.component';
 import { ResumoComponent } from './aurum/resumo/resumo.component';
@@ -17,10 +17,6 @@ const routes: Routes = [
       // { path: 'cadastros/contas', component: ContasComponent },
       // { path: 'cadastros/cartoes', component: CartoesComponent },
     ]
-  },
-  {
-    path: 'configure',
-    component: ConfigureComponent,
   },
 ];
 
