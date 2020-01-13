@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+
+import { TransactionService } from '../shared/service/transaction.service';
 
 @Component({
   selector: 'app-resumo',
@@ -9,13 +11,15 @@ export class ResumoComponent implements OnInit {
 
   lista = [];
 
-  constructor() { }
+  constructor(
+    private transactionService: TransactionService
+  ) { }
 
   ngOnInit() {
   }
 
   adicionar(dia?: any) {
-    // TODO
+    this.transactionService.openDialog();
   }
 
 }
