@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Transaction } from '../model/transaction.model';
-import { TransactionComponent } from '../../transaction/transaction.component';
+import { BaseService } from './base.service';
+
 
 @Injectable()
-export class TransactionService {
+export class TransactionService extends BaseService<Transaction> {
 
-    constructor(public dialog: MatDialog) { }
-
-    public async openDialog(transaction?: Transaction) {
-        const dialogRef = this.dialog.open(TransactionComponent, {
-            data: transaction || new Transaction(),
-        });
-
-        await dialogRef.afterClosed().toPromise();
+    constructor(db: AngularFirestore) {
+        super(db, 'transactions');
     }
 
 }

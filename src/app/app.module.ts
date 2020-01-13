@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -51,7 +51,7 @@ import { TransactionService } from './shared/service/transaction.service';
     RouterModule,
     // Angular Fire (Firebase)
     AngularFireModule.initializeApp(tokens.firebase),
-    AngularFireAuthModule, AngularFireDatabaseModule,
+    AngularFireAuthModule, AngularFirestoreModule,
     // Angular Material
     MatSidenavModule, MatListModule, MatTabsModule, MatTableModule,
     MatButtonModule, MatCardModule, MatDialogModule, MatIconModule,
