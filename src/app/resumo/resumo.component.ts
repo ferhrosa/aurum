@@ -6,6 +6,7 @@ import { Transaction } from '../shared/model/transaction.model';
 import { TransactionService } from '../shared/service/transaction.service';
 
 import { TransactionComponent } from '../transaction/transaction.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,12 +16,14 @@ import { TransactionComponent } from '../transaction/transaction.component';
 })
 export class ResumoComponent implements OnInit {
 
-  lista = [];
+  list: Observable<Transaction[]>;
 
   constructor(
     private transactionService: TransactionService,
     public dialog: MatDialog,
-  ) { }
+  ) {
+    this.list = transactionService.getCollection();
+  }
 
   ngOnInit() {
   }

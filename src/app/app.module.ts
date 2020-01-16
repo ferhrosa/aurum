@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { tokens } from 'src/environments/tokens';
 
+import { CustomCurrencyPipe } from './shared/pipe/currency.pipe';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -41,6 +43,7 @@ import { TransactionService } from './shared/service/transaction.service';
     IndexComponent,
     ResumoComponent,
     TransactionComponent,
+    CustomCurrencyPipe,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { TransactionService } from './shared/service/transaction.service';
     TransactionComponent,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true } },
     TransactionService,

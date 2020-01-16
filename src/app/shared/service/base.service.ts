@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +11,7 @@ import { Entity } from '../model/entity.model';
 
 const root = `environments/${environment.firebaseEnvironment}/`;
 
-export class BaseService<T extends Entity> {
+export abstract class BaseService<T extends Entity> {
 
     protected constructor(
         protected db: AngularFirestore,
@@ -29,6 +30,10 @@ export class BaseService<T extends Entity> {
                 if (Array.isArray(object[item]) && typeof (object[item][0]) === 'object') {
                     object[item] = (object[item] as Array<any>).map(obj => Object.assign({}, obj));
                 }
+
+                if (object[item] instanceof Date) {
+                    object[item] = firebase.firestore.Timestamp.fromDate(object[item]);
+                }
             }
         };
 
@@ -46,6 +51,9 @@ export class BaseService<T extends Entity> {
                 a => {
                     const entity = a.payload.doc.data() as T;
                     entity.id = a.payload.doc.id;
+
+                    this.executeCustomMappings(a.payload.doc.data(), entity);
+
                     return entity;
                 }
             )
@@ -57,10 +65,15 @@ export class BaseService<T extends Entity> {
             doc => {
                 const entity = doc as T;
                 entity.id = id;
+
+                this.executeCustomMappings(doc, entity);
+
                 return entity;
             }
         ));
     }
+
+    protected abstract executeCustomMappings(doc: any, entity: T);
 
     public async save(entity: T) {
         const toSave = BaseService.toSaveable(entity);

@@ -4,7 +4,10 @@
 <div mat-dialog-content>
     <p>Date</p>
     <mat-form-field>
-        <input matInput [(ngModel)]="transaction.date">
+        <input type="date" matInput [ngModel]="transaction.date | date:'yyyy-MM-dd'"
+            (ngModelChange)="transaction.dateFromString($event)">
+        <input matInput [(ngModel)]="transaction.description">
+        <input type="number" matInput [(ngModel)]="transaction.value">
     </mat-form-field>
 </div>
 

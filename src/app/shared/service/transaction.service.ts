@@ -13,4 +13,8 @@ export class TransactionService extends BaseService<Transaction> {
         super(db, 'transactions');
     }
 
+    protected executeCustomMappings(doc: any, entity: Transaction) {
+        entity.date = doc.date && doc.date.toDate();
+    }
+
 }

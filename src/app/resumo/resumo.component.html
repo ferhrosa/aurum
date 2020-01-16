@@ -75,16 +75,10 @@
 <mat-card>
 
     <mat-list>
-        <mat-list-item *ngFor="let item of lista">
-            {{item.Id}} - {{item.Descricao}}
+        <mat-list-item *ngFor="let item of list | async">
+            {{item.id}} - {{item.date | date:'shortDate'}} - {{item.description}} - {{item.value | currency}}
         </mat-list-item>
     </mat-list>
 
 </mat-card>
 
-
-<span class="fab-container">
-    <button mat-fab (click)="adicionar()">
-        <mat-icon>add</mat-icon>
-    </button>
-</span>

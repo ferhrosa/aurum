@@ -12,10 +12,10 @@ const routes: Routes = [
     pathMatch: 'full',
     /*redirectTo: '/resumo'*/
   },
-  {
-    path: 'resumo',
-    component: ResumoComponent
-  },
+  // {
+  //   path: 'resumo',
+  //   component: ResumoComponent
+  // },
   // { path: 'cadastros/categorias', component: CategoriasComponent },
   // { path: 'cadastros/contas', component: ContasComponent },
   // { path: 'cadastros/cartoes', component: CartoesComponent },
