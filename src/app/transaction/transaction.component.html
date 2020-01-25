@@ -1,17 +1,29 @@
 <h1 mat-dialog-title *ngIf="transaction.id">Edit transaction</h1>
 <h1 mat-dialog-title *ngIf="!transaction.id">Add transaction</h1>
 
-<div mat-dialog-content>
-    <p>Date</p>
-    <mat-form-field>
-        <input type="date" matInput [ngModel]="transaction.date | date:'yyyy-MM-dd'"
-            (ngModelChange)="transaction.dateFromString($event)">
-        <input matInput [(ngModel)]="transaction.description">
-        <input type="number" matInput [(ngModel)]="transaction.value">
+<form #transactionForm="ngForm" name="teste" id="form-transaction" mat-dialog-content (submit)="save()" class="row">
+
+    <!-- <div class="row"> -->
+
+    <mat-form-field class="col-sm-6">
+        <input name="date" matInput placeholder="Date" type="date" required
+            [ngModel]="transaction.date | date:'yyyy-MM-dd'" (ngModelChange)="transaction.dateFromString($event)">
     </mat-form-field>
-</div>
+    <mat-form-field class="col-sm-6">
+        <input name="value" matInput placeholder="Value" type="number" required [(ngModel)]="transaction.value">
+    </mat-form-field>
+    <mat-form-field class="col-12">
+        <input name="description" matInput placeholder="Description" required [(ngModel)]="transaction.description">
+    </mat-form-field>
+
+    <!-- </div> -->
+
+    <!-- <code style="display: block">{{transactionForm.form | json}}</code> -->
+    <!-- <code style="display: block">{{transaction | json}}</code> -->
+</form>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="save()">Save</button>
+    <button mat-button type="submit" form="form-transaction">Save</button>
+    <!-- <button mat-button type="submit" form="form-transaction" [disabled]="!transactionForm.form.valid">Save</button> -->
     <button mat-button [mat-dialog-close]>Cancel</button>
 </div>

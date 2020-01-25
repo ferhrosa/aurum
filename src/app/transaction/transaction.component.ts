@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 
 import { Transaction } from '../shared/model/transaction.model';
 import { TransactionService } from '../shared/service/transaction.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { TransactionService } from '../shared/service/transaction.service';
   styleUrls: ['./transaction.component.scss']
 })
 export class TransactionComponent implements OnInit {
+
+  @ViewChild('transactionForm', { static: false }) form: NgForm;
 
   constructor(
     private transactionService: TransactionService,
@@ -23,8 +26,10 @@ export class TransactionComponent implements OnInit {
   }
 
   async save() {
-    await this.transactionService.save(this.transaction);
-    return this.dialogRef.close(this.transaction);
+    if (this.form.valid) {
+      await this.transactionService.save(this.transaction);
+      return this.dialogRef.close(this.transaction);
+    }
   }
 
   cancel() {

@@ -2,8 +2,10 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import ptBr from '@angular/common/locales/pt';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -37,6 +39,8 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionService } from './shared/service/transaction.service';
 
 
+registerLocaleData(ptBr, 'pt');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,8 +68,8 @@ import { TransactionService } from './shared/service/transaction.service';
     TransactionComponent,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt' },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true } },
     TransactionService,
   ],
