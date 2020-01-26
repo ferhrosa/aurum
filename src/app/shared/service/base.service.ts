@@ -45,7 +45,9 @@ export abstract class BaseService<T extends Entity> {
 
     protected getFullCollectionPath = (): string => `${root}${this.collectionPath}`;
 
-    public getCollection(queryFn?: QueryFn): Observable<T[]> {
+    protected getCollection = () => this.db.collection<T>(this.getFullCollectionPath());
+
+    public getCollectionWithQuery(queryFn?: QueryFn): Observable<T[]> {
         return this.db.collection<T>(this.getFullCollectionPath(), queryFn).snapshotChanges().pipe(map(
             actions => actions.map(
                 a => {
@@ -61,7 +63,7 @@ export abstract class BaseService<T extends Entity> {
     }
 
     public getEntity(id: string): Observable<T> {
-        return this.db.collection<T>(this.getFullCollectionPath()).doc<T>(id).valueChanges().pipe(map(
+        return this.getCollection().doc<T>(id).valueChanges().pipe(map(
             doc => {
                 const entity = doc as T;
                 entity.id = id;
@@ -79,13 +81,17 @@ export abstract class BaseService<T extends Entity> {
         const toSave = BaseService.toSaveable(entity);
 
         if (entity.id) {
-            await this.db.collection(this.getFullCollectionPath())
+            await this.getCollection()
                 .doc(entity.id)
                 .update(toSave);
         } else {
-            await this.db.collection(this.getFullCollectionPath())
+            await this.getCollection()
                 .add(toSave);
         }
+    }
+
+    public async delete(entity: T) {
+        await this.getCollection().doc(entity.id).delete();
     }
 
 }

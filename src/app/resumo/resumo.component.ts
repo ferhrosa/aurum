@@ -22,13 +22,13 @@ export class ResumoComponent implements OnInit {
     private transactionService: TransactionService,
     public dialog: MatDialog,
   ) {
-    this.list = transactionService.getCollection();
+    this.list = transactionService.getCollectionWithQuery();
   }
 
   ngOnInit() {
   }
 
-  adicionar(dia?: any) {
+  add(dia?: any) {
     this.openDialog();
   }
 
@@ -39,4 +39,9 @@ export class ResumoComponent implements OnInit {
 
     await dialogRef.afterClosed().toPromise();
   }
+
+  delete(transaction: Transaction) {
+    this.transactionService.delete(transaction);
+  }
+
 }

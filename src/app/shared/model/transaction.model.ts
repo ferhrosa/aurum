@@ -3,12 +3,24 @@ import { Entity } from './entity.model';
 
 export class Transaction extends Entity {
 
+    createdOn: Date;
+    createdBy: string;
+
     year: number;
     month: number;
     day: number;
     date: Date;
+
     description: string;
     value: number;
+
+    constructor() {
+        super();
+        this.date = new Date();
+        this.year = this.date.getFullYear();
+        this.month = this.date.getMonth() + 1;
+        this.day = this.date.getDate();
+    }
 
     dateFromString(stringValue: string) {
         if (!stringValue || !stringValue.toString().trim().length) {

@@ -27,7 +27,7 @@
                     <td class="titulo-saldo">Saldo inicial</td>
                     <td class="cabecalho valor positivo">R$ 420,00</td>
                     <td rowspan="4" class="botao-adicionar">
-                        <button mat-icon-button aria-label="Adicionar" (click)="adicionar(123)">
+                        <button mat-icon-button aria-label="Adicionar" (click)="add(123)">
                             <mat-icon>add_box</mat-icon>
                         </button>
                     </td>
@@ -49,7 +49,7 @@
                     <td class="titulo-saldo">Saldo inicial</td>
                     <td class="cabecalho valor positivo">R$ 316,00</td>
                     <td rowspan="3" class="botao-adicionar">
-                        <button mat-icon-button aria-label="Adicionar" (click)="adicionar()">
+                        <button mat-icon-button aria-label="Adicionar" (click)="add()">
                             <mat-icon>add_box</mat-icon>
                         </button>
                     </td>
@@ -76,7 +76,8 @@
 
     <mat-list>
         <mat-list-item *ngFor="let item of list | async">
-            {{item.id}} - {{item.date | date:'shortDate'}} - {{item.description}} - {{item.value | currency}}
+            <mat-icon matListIcon (click)="delete(item)">delete_forever</mat-icon>
+            <p matLine>{{item.id}} - {{item.date | date:'shortDate'}} - {{item.description}} - {{item.value | currency}}</p>
         </mat-list-item>
     </mat-list>
 

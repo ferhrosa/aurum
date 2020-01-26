@@ -22,7 +22,6 @@ export class IndexComponent implements OnInit {
   }
 
   openAddTransaction() {
-    console.log('openAddTransaction');
     this.openDialog();
   }
 
