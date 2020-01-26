@@ -5,13 +5,25 @@
 
     <!-- <div class="row"> -->
 
-    <mat-form-field class="col-sm-6">
+    <mat-form-field class="col-sm-4">
         <input name="date" matInput placeholder="Date" type="date" required
             [ngModel]="transaction.date | date:'yyyy-MM-dd'" (ngModelChange)="transaction.dateFromString($event)">
     </mat-form-field>
-    <mat-form-field class="col-sm-6">
+
+    <span class="col-sm-3">
+        <mat-button-toggle-group name="type" required [(ngModel)]="transaction.type">
+            <mat-button-toggle color="income" [value]="1">Income</mat-button-toggle>
+            <mat-button-toggle color="expense" [value]="-1">Expense</mat-button-toggle>
+        </mat-button-toggle-group>
+    </span>
+    <!-- <mat-radio-group name="type" [(ngModel)]="transaction.type" class="col-sm-5">
+        <mat-radio-button [value]="1">Income</mat-radio-button>
+        <mat-radio-button [value]="-1">Expense</mat-radio-button>
+    </mat-radio-group> -->
+    <mat-form-field class="col-sm-4">
         <input name="value" matInput placeholder="Value" type="number" required [(ngModel)]="transaction.value">
     </mat-form-field>
+
     <mat-form-field class="col-12">
         <input name="description" matInput placeholder="Description" required [(ngModel)]="transaction.description">
     </mat-form-field>
@@ -22,8 +34,20 @@
     <!-- <code style="display: block">{{transaction | json}}</code> -->
 </form>
 
-<div mat-dialog-actions>
-    <button mat-button type="submit" form="form-transaction">Save</button>
-    <!-- <button mat-button type="submit" form="form-transaction" [disabled]="!transactionForm.form.valid">Save</button> -->
-    <button mat-button [mat-dialog-close]>Cancel</button>
-</div>
+<mat-dialog-actions>
+    <div>
+        <button mat-raised-button color="primary" type="submit" form="form-transaction">
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button mat-button [mat-dialog-close]>
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </div>
+    <div *ngIf="transaction.id">
+        <button mat-icon-button type="button" (click)="delete()" aria-label="Delete">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-dialog-actions>

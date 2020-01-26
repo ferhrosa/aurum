@@ -26,9 +26,7 @@ export class TransactionComponent implements OnInit {
   }
 
   async save() {
-    console.log(this.form.valid);
     if (this.form.valid) {
-      console.log('foi');
       await this.transactionService.save(this.transaction);
       return this.dialogRef.close(this.transaction);
     }
@@ -36,6 +34,11 @@ export class TransactionComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close();
+  }
+
+  async delete() {
+    await this.transactionService.delete(this.transaction);
+    return this.dialogRef.close();
   }
 
 }

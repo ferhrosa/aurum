@@ -11,8 +11,10 @@ export class Transaction extends Entity {
     day: number;
     date: Date;
 
-    description: string;
+    type: -1 | 1;
     value: number;
+
+    description: string;
 
     constructor() {
         super();
@@ -20,6 +22,7 @@ export class Transaction extends Entity {
         this.year = this.date.getFullYear();
         this.month = this.date.getMonth() + 1;
         this.day = this.date.getDate();
+        this.type = -1;
     }
 
     dateFromString(stringValue: string) {

@@ -1,5 +1,5 @@
 //@import 'css/tema-padrao';
-@import '../shared/tema';
+@import '../shared/theme';
 
 mat-card {
     margin-bottom: 20px;
@@ -45,11 +45,11 @@ mat-card {
                 text-align: right;
 
                 &.positivo {
-                    color: $tema-cor-receita;
+                    color: $theme-color-income;
                 }
 
                 &.negativo {
-                    color: $tema-cor-despesa;
+                    color: $theme-color-expense;
                 }
             }
 

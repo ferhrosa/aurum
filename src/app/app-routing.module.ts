@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
-import { ResumoComponent } from './resumo/resumo.component';
+import { SummaryComponent } from './summary/summary.component';
 
 
 const routes: Routes = [
@@ -10,11 +10,11 @@ const routes: Routes = [
     path: '',
     component: IndexComponent,
     pathMatch: 'full',
-    /*redirectTo: '/resumo'*/
+    /*redirectTo: '/summary'*/
   },
   // {
-  //   path: 'resumo',
-  //   component: ResumoComponent
+  //   path: 'summary',
+  //   component: SummaryComponent
   // },
   // { path: 'cadastros/categorias', component: CategoriasComponent },
   // { path: 'cadastros/contas', component: ContasComponent },

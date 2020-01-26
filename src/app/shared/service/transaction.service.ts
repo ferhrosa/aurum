@@ -19,7 +19,6 @@ export class TransactionService extends BaseService<Transaction> {
         super(db, 'transactions');
         this.afAuth.user.subscribe(user => {
             this.user = user;
-            console.log(user);
         });
     }
 
@@ -34,8 +33,6 @@ export class TransactionService extends BaseService<Transaction> {
             transaction.createdOn = new Date();
             transaction.createdBy = this.user.uid;
         }
-
-        console.log(transaction);
 
         await super.save(transaction);
     }

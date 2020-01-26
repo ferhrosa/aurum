@@ -2,3 +2,8 @@
     width: 90vw;
     max-width: 600px;
 }
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+}

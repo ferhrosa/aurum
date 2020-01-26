@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,6 +20,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
@@ -33,7 +35,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IndexComponent } from './index/index.component';
-import { ResumoComponent } from './resumo/resumo.component';
+import { SummaryComponent } from './summary/summary.component';
 import { TransactionComponent } from './transaction/transaction.component';
 
 import { TransactionService } from './shared/service/transaction.service';
@@ -45,7 +47,7 @@ registerLocaleData(ptBr, 'pt');
   declarations: [
     AppComponent,
     IndexComponent,
-    ResumoComponent,
+    SummaryComponent,
     TransactionComponent,
     CustomCurrencyPipe,
   ],
@@ -61,8 +63,9 @@ registerLocaleData(ptBr, 'pt');
     AngularFireAuthModule, AngularFirestoreModule,
     // Angular Material
     MatSidenavModule, MatListModule, MatTabsModule, MatTableModule,
-    MatButtonModule, MatCardModule, MatDialogModule, MatIconModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
+    MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatRadioModule, MatSelectModule,
   ],
   entryComponents: [
     TransactionComponent,

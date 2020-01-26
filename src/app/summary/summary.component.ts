@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-resumo',
-  templateUrl: './resumo.component.html',
-  styleUrls: ['./resumo.component.scss']
+  selector: 'app-summary',
+  templateUrl: './summary.component.html',
+  styleUrls: ['./summary.component.scss']
 })
-export class ResumoComponent implements OnInit {
+export class SummaryComponent implements OnInit {
 
   list: Observable<Transaction[]>;
 
@@ -30,6 +30,10 @@ export class ResumoComponent implements OnInit {
 
   add(dia?: any) {
     this.openDialog();
+  }
+
+  edit(transaction: Transaction) {
+    this.openDialog(transaction);
   }
 
   public async openDialog(transaction?: Transaction) {

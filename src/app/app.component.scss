@@ -1,4 +1,4 @@
-@import 'shared/tema';
+@import 'shared/theme';
 
 .sign-in {
     display: flex;
@@ -25,9 +25,9 @@ mat-sidenav-container mat-sidenav {
     //     color: #999;
     // }
 
-    .icone-resumo { color: $tema-cor-resumo; }
-    .icone-despesa { color: $tema-cor-despesa; }
-    .icone-receita { color: $tema-cor-receita; }
+    .icon-summary { color: $theme-color-summary; }
+    .icon-expense { color: $theme-color-expense; }
+    .icon-income { color: $theme-color-income; }
 
 }
 
