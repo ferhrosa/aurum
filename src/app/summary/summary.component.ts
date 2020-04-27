@@ -7,6 +7,7 @@ import { TransactionService } from '../shared/service/transaction.service';
 
 import { TransactionComponent } from '../transaction/transaction.component';
 import { Observable } from 'rxjs';
+import { groupBy } from 'rxjs/operators';
 
 
 @Component({
@@ -18,11 +19,29 @@ export class SummaryComponent implements OnInit {
 
   list: Observable<Transaction[]>;
 
+  days: DayGroup[];
+
   constructor(
     private transactionService: TransactionService,
     public dialog: MatDialog,
   ) {
     this.list = transactionService.getCollectionWithQuery();
+
+    transactionService.getCollectionWithQuery().subscribe(transactions => {
+
+      let dayGroup: DayGroup = null;
+
+      transactions.forEach(t => {
+        if (!dayGroup || dayGroup.day !== t.day) {
+          dayGroup = new DayGroup(t.date);
+        }
+
+        dayGroup.transactions.push(t);
+        dayGroup.updateBalance();
+      });
+
+      // console.log(t);
+    });
   }
 
   ngOnInit() {
@@ -46,6 +65,25 @@ export class SummaryComponent implements OnInit {
 
   delete(transaction: Transaction) {
     this.transactionService.delete(transaction);
+  }
+
+}
+
+class DayGroup {
+
+  day: number;
+  date: Date;
+  balance: number;
+  transactions: Transaction[] = [];
+
+  constructor(date: Date) {
+    this.date = date;
+  }
+
+  updateBalance() {
+    this.balance = this.transactions.reduce((prev, curr, index, items) => {
+      return (prev.value * prev.type) + (curr.value * curr.type);
+    });
   }
 
 }

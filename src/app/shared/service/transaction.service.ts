@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 
 import { Transaction } from '../model/transaction.model';
 import { BaseService } from './base.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -20,6 +21,10 @@ export class TransactionService extends BaseService<Transaction> {
         this.afAuth.user.subscribe(user => {
             this.user = user;
         });
+    }
+
+    public getCollectionWithQuery(): Observable<Transaction[]> {
+        return super.getCollectionWithQuery(q => q.orderBy('date', 'desc'));
     }
 
     protected executeCustomMappings(doc: any, entity: Transaction) {
