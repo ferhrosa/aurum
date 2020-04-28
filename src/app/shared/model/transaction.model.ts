@@ -16,9 +16,9 @@ export class Transaction extends Entity {
 
     description: string;
 
-    constructor() {
+    constructor(date?: Date) {
         super();
-        this.date = new Date();
+        this.date = date || new Date();
         this.year = this.date.getFullYear();
         this.month = this.date.getMonth() + 1;
         this.day = this.date.getDate();

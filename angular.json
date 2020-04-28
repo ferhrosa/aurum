@@ -143,5 +143,8 @@
       }
     }
   },
-  "defaultProject": "aurum"
+  "defaultProject": "aurum",
+  "cli": {
+    "analytics": "3ad9836a-5766-45ff-898e-84a03a8416e8"
+  }
 }

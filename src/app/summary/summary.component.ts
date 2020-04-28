@@ -19,7 +19,7 @@ export class SummaryComponent implements OnInit {
 
   list: Observable<Transaction[]>;
 
-  days: DayGroup[];
+  days: DayGroup[] = [];
 
   constructor(
     private transactionService: TransactionService,
@@ -32,23 +32,22 @@ export class SummaryComponent implements OnInit {
       let dayGroup: DayGroup = null;
 
       transactions.forEach(t => {
-        if (!dayGroup || dayGroup.day !== t.day) {
+        if (!dayGroup || !dayGroup.day || dayGroup.day.valueOf !== t.day.valueOf) {
           dayGroup = new DayGroup(t.date);
+          this.days.push(dayGroup);
         }
 
         dayGroup.transactions.push(t);
         dayGroup.updateBalance();
       });
-
-      // console.log(t);
     });
   }
 
   ngOnInit() {
   }
 
-  add(dia?: any) {
-    this.openDialog();
+  add(date?: Date) {
+    this.openDialog(date ? new Transaction(date) : null);
   }
 
   edit(transaction: Transaction) {
@@ -81,9 +80,9 @@ class DayGroup {
   }
 
   updateBalance() {
-    this.balance = this.transactions.reduce((prev, curr, index, items) => {
-      return (prev.value * prev.type) + (curr.value * curr.type);
-    });
+    this.balance = this.transactions
+      .map(t => t.value * t.type)
+      .reduce((previous, current) => previous + current);
   }
 
 }
